@@ -28,7 +28,8 @@
         "spatie/laravel-twitter-streaming-api": "^1.0",
         "spatie/last-fm-now-playing": "^1.0",
         "spatie/packagist-api": "^1.0.1",
-        "spatie/valuestore": "^1.1"
+        "spatie/valuestore": "^1.1",
+        "willvincent/feeds": "^1.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
