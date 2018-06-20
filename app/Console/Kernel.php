@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Apis\UpdateApiInfo;
+use App\Console\Components\InternetConnection\SendHeartbeat;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -11,7 +13,8 @@ class Kernel extends ConsoleKernel
     {
 //        $schedule->command('dashboard:fetch-calendar-events')->everyMinute();
 // $schedule->command('dashboard:fetch-current-track')->everyMinute();
-        $schedule->command('dashboard:send-heartbeat')->everyMinute();
+        $schedule->command(SendHeartbeat::class)->everyMinute();
+        $schedule->command(UpdateApiInfo::class)->everyMinute();
 //        $schedule->command('dashboard:fetch-tasks')->everyFiveMinutes();
         //$schedule->command('dashboard:fetch-github-totals')->everyThirtyMinutes();
 //        $schedule->command('dashboard:fetch-packagist-totals')->hourly();
@@ -26,5 +29,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__ . '/Components');
+        $this->load(__DIR__ . '/Commands');
     }
 }

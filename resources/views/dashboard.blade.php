@@ -14,7 +14,7 @@
     <tasks team-member="dk" position="c1:c3"></tasks>
     <tasks team-member="mk" position="d1:d3"></tasks>
     <time-weather position="e1" date-format="ddd DD/MM" time-zone="Europe/Brussels" weather-city="Fredericia"></time-weather>
-    <calendar position="e2:e3"></calendar>
+    <api-status position="e2:e3"></api-status>
     <internet-connection></internet-connection>
 </dashboard>
 
