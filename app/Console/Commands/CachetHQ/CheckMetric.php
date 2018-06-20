@@ -1,27 +1,25 @@
 <?php
 
-namespace App\Console\Commands\AWS;
+namespace App\Console\Commands\CachetHQ;
 
-use App\ApiIntegration\AWS\Alarms;
+use App\ApiIntegration\CachetHQ\Metric;
 use Illuminate\Console\Command;
 
-class CheckForAlarms extends Command
+class CheckMetric extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'aws:check-for-alarms';
+    protected $signature = 'cachethq:metric {metric}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Poll AWS for CloudWatch alarms';
-
-    protected $alarms = null;
+    protected $description = 'Poll CachetHQ for a given metric';
 
     /**
      * Create a new command instance.
@@ -31,8 +29,6 @@ class CheckForAlarms extends Command
     public function __construct()
     {
         parent::__construct();
-
-        $this->alarms = new Alarms();
     }
 
     /**
@@ -42,7 +38,9 @@ class CheckForAlarms extends Command
      */
     public function handle()
     {
-        $this->info($this->alarms->getValue());
+        $metric = new Metric(env('CACHETHQ_METRIC'));
+
+        $this->info($metric->getValue());
 
         return true;
     }
