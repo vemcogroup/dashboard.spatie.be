@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Apis;
 
 use Illuminate\Console\Command;
+use App\ApiIntegration\AWS\Alarms;
 use App\Events\Apis\StatusFetched;
 use App\ApiIntegration\ApiIntegration;
 use App\ApiIntegration\Dynatrace\DynatraceProblems;
@@ -38,6 +39,7 @@ class UpdateApiInfo extends Command
         parent::__construct();
 
         $this->apis[] = new DynatraceProblems();
+        $this->apis[] = new Alarms();
     }
 
     /**
