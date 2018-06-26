@@ -72,7 +72,9 @@ export default {
         getEventHandlers() {
             return {
                 'Twitter.Mentioned': response => {
+                  if (!response.tweetProperties['delete']) {
                     this.addToWaitingLine(new Tweet(response.tweetProperties));
+                  }
                 },
             };
         },
@@ -107,7 +109,7 @@ export default {
     computed: {
         onDisplay() {
             return this.tweets.filter(tweet => {
-                return tweet.authorScreenName !== this.ownScreenName && !tweet.isRetweet && !tweet.delete;
+                return tweet.authorScreenName !== this.ownScreenName && !tweet.isRetweet;
             });
         },
     },
