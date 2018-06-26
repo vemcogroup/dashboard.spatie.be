@@ -61,7 +61,8 @@ export default {
     },
 
     created() {
-        this.tweets = this.initialTweets.map(tweetProperties => new Tweet(tweetProperties));
+      // @TODO needs to check for deleted tweets, else it crashes
+        //        this.tweets = this.initialTweets.map(tweetProperties => new Tweet(tweetProperties));
 
         setInterval(this.processWaitingLine, 1000);
     },
