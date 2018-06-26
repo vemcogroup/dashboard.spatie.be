@@ -12,16 +12,32 @@ class ListenForMentions extends Command
 
     protected $description = 'Listen for mentions on Twitter';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Listening for mentions...');
 
         app(TwitterStreamingApi::class)
             ->publicStream()
+            ->whenTweets([
+                '@vemcount',
+                '@laravelnews',
+                '@laravel',
+                '@steveschoger',
+                '@adamwathan',
+                '@themsaid',
+                '@freekmurze',
+                '@taylorotwell',
+                '@php_net',
+                '@phpstorm',
+            ], function () {
+            })
+            ->whenFrom([], function () {
+            })
             ->whenHears([
-                'spatie.be',
-                '@spatie_be',
-                'github.com/spatie',
+                'vemcount',
+                '@vemcount',
+                'vemcogroup',
+                '@vemcogroup',
             ], function (array $tweetProperties) {
                 event(new Mentioned($tweetProperties));
             })
