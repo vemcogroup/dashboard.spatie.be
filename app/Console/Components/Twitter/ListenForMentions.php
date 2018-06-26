@@ -19,17 +19,17 @@ class ListenForMentions extends Command
         app(TwitterStreamingApi::class)
             ->publicStream()
             ->whenTweets([
-                '@vemcount',
-                '@laravelnews',
-                '@laravel',
-                '@steveschoger',
-                '@adamwathan',
-                '@themsaid',
-                '@freekmurze',
-                '@taylorotwell',
-                '@php_net',
-                '@phpstorm',
-                '@danijel_k',
+                629707694, // 'vemcount',
+                509273832, // 'laravelnews',
+                1497912571, // 'laravel',
+                101624176, // 'steveschoger',
+                716933677, // 'adamwathan',
+                261648371, // 'themsaid',
+                97178022, // 'freekmurze',
+                28870687, // 'taylorotwell',
+                18469707, // 'php_net',
+                115180931, // 'phpstorm',
+                186762493, // 'danijel_k',
             ], function () {
             })
             ->whenFrom([], function () {
