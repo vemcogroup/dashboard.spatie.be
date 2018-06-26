@@ -29,6 +29,7 @@ class ListenForMentions extends Command
                 '@taylorotwell',
                 '@php_net',
                 '@phpstorm',
+                '@danijel_k',
             ], function () {
             })
             ->whenFrom([], function () {
