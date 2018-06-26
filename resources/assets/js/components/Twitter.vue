@@ -56,7 +56,7 @@ export default {
             displayingTopTweetSince: moment(),
             tweets: [],
             waitingLine: [],
-            ownScreenName: '@spatie_be',
+            ownScreenName: '@vemcount',
         };
     },
 
@@ -107,7 +107,7 @@ export default {
     computed: {
         onDisplay() {
             return this.tweets.filter(tweet => {
-                return tweet.authorScreenName !== this.ownScreenName && !tweet.isRetweet;
+                return tweet.authorScreenName !== this.ownScreenName && !tweet.isRetweet && !tweet.delete;
             });
         },
     },
