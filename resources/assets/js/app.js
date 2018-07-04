@@ -6,6 +6,7 @@ import Vue from 'vue';
 import Dashboard from './components/Dashboard';
 import Calendar from './components/Calendar';
 import Github from './components/Github';
+import Gitlab from './components/Gitlab';
 import InternetConnection from './components/InternetConnection';
 import Music from './components/Music';
 import Npm from './components/Npm';
@@ -23,6 +24,7 @@ new Vue({
         Dashboard,
         Calendar,
         Github,
+        Gitlab,
         InternetConnection,
         Music,
         Npm,
