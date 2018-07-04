@@ -16,13 +16,17 @@ class FetchGitlabTasks extends Command
 
     protected $httpClient = null;
 
+    protected $projectId = null;
+
     protected $userIds = [];
 
     protected $issues = [];
 
     public function handle()
     {
-        $this->url = "https://gitlab.com/api/v4/projects/6547979/issues?state=opened&scope=all&order_by=updated_at&assignee_id=";
+        $this->projectId = env('GITLAB_PROJECT');
+
+        $this->url = "https://gitlab.com/api/v4/projects/$this->projectId/issues?state=opened&scope=all&order_by=updated_at&assignee_id=";
 
         $this->userIds = \explode(',', env('GITLAB_USER_IDS'));
 
