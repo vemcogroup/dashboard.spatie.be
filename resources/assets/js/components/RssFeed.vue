@@ -3,7 +3,7 @@
         <section class="feeds" v-if="feeds.length">
             <transition name="fade" tag="div" mode="out-in">
                 <div class="feed">
-                    <span class="feed__date">{{ feed.date }}</span>
+                    <span class="feed__date">{{ date(feed.date) }}</span>
                     <span class="feed__title">{{ feed.title }}</span>
                 </div>
             </transition>
@@ -14,6 +14,7 @@
 <script>
 import echo from '../mixins/echo';
 import Tile from './atoms/Tile';
+import moment from 'moment';
 import saveState from 'vue-save-state';
 
 export default {
@@ -33,7 +34,7 @@ export default {
     },
     created: function() {
         this.current = 0;
-        setInterval(this.update, 5000);
+        setInterval(this.update, 15000);
     },
     methods: {
         update() {
@@ -59,6 +60,9 @@ export default {
                 cacheKey: 'feeds',
             };
         },
+        date(date) {
+            return moment(date).fromNow();
+        }
     },
     computed: {
         feed() {
