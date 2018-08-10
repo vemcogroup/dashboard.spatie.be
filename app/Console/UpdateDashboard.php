@@ -2,10 +2,11 @@
 
 namespace App\Console;
 
-use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
-use App\Console\Commands\Stats\UpdateStats;
-use App\Console\Components\InternetConnection\SendHeartbeat;
 use Illuminate\Console\Command;
+use App\Console\Commands\Feed\ReadFeeds;
+use App\Console\Commands\Stats\UpdateStats;
+use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
+use App\Console\Components\InternetConnection\SendHeartbeat;
 
 class UpdateDashboard extends Command
 {
@@ -13,10 +14,11 @@ class UpdateDashboard extends Command
 
     protected $description = 'Update all components displayed on the dashboard.';
 
-    public function handle() : void
+    public function handle(): void
     {
         $this->call(UpdateStats::class);
         $this->call(FetchGitlabTasksByLabel::class);
         $this->call(SendHeartbeat::class);
+        $this->call(ReadFeeds::class);
     }
 }

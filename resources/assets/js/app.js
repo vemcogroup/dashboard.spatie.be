@@ -16,6 +16,7 @@ import Tasks from './components/Tasks';
 import TimeWeather from './components/TimeWeather';
 import Twitter from './components/Twitter';
 import Uptime from './components/Uptime';
+import RssFeed from './components/RssFeed';
 import ApiStatus from './components/ApiStatus';
 import Stats from './components/Stats';
 
@@ -38,6 +39,7 @@ new Vue({
         Uptime,
         ApiStatus,
         Stats,
+        RssFeed,
     },
 
     created() {

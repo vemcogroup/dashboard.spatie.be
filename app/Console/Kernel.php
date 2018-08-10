@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\Feed\ReadFeeds;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\Stats\UpdateStats;
 use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(SendHeartbeat::class)->everyMinute();
         $schedule->command(UpdateStats::class)->everyFiveMinutes();
         $schedule->command(FetchGitlabTasksByLabel::class)->everyFiveMinutes();
+        $schedule->command(ReadFeeds::class)->everyFiveMinutes();
     }
 
     /**

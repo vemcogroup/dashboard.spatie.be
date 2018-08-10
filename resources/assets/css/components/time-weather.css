@@ -58,4 +58,5 @@
     font-weight: 300;
     font-size: var(--font-size-xxs);
     grid-area: uptime;
+    text-align: center;
 }
