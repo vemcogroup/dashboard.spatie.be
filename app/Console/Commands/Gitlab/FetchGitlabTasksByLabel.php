@@ -59,7 +59,7 @@ class FetchGitlabTasksByLabel extends Command
                     continue;
                 }
                 if(starts_with($label,'/')) {
-                    $types[] = str_replace_first('/', '', $label);
+                    $types[] = $label;
                     continue;
                 }
                 $issues[] = [

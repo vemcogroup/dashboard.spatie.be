@@ -28,6 +28,7 @@ class ListenForMentions extends Command
                 97178022, // 'freekmurze',
                 28870687, // 'taylorotwell',
                 18469707, // 'php_net',
+                1537028058, // 'official_php'
                 115180931, // 'phpstorm',
                 186762493, // 'danijel_k',
             ], function () {

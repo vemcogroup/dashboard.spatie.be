@@ -28,6 +28,18 @@ class FetchGitlabGroupInfo extends Command
             'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1'
         ]);
 
+        $this->resources->put('finished', [
+            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Solution finished'
+        ]);
+
+        $this->resources->put('approved', [
+            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Approved for production'
+        ]);
+
+        $this->resources->put('deployed', [
+            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Deployed on staging'
+        ]);
+
         $this->resources->put('mergeRequests', [
             'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/merge_requests?state=opened&scope=all&per_page=1'
         ]);

@@ -12,6 +12,15 @@ class TotalsFetched extends DashboardEvent
     /** @var int */
     public $mergeRequests;
 
+    /** @var int */
+    public $finished;
+
+    /** @var int */
+    public $approved;
+
+    /** @var int */
+    public $deployed;
+
     public function __construct(array $totals)
     {
         foreach ($totals as $sumName => $details) {

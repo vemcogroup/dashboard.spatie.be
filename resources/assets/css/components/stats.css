@@ -1,0 +1,23 @@
+.stats__group {
+    margin-bottom: 20px;
+}
+.stats__title {
+    padding: 5px;
+    text-transform: uppercase;
+    background-color: #2f3135;
+    font-size: var(--font-size-xxs);
+}
+
+.stats__sub_title {
+    font-weight: 300;
+    padding-left: 5px;/**/
+    font-size: var(--font-size-xxs);
+}
+
+.stats__count {
+    color: var(--yellow);
+    vertical-align: top;
+    white-space: nowrap;
+    padding-right: 5px;
+    font-size: var(--font-size-xxs)
+}
