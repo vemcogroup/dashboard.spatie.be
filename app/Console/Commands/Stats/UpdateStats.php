@@ -56,7 +56,6 @@ class UpdateStats extends Command
             'showTitle' => true,
             'showEmpty' => false,
             'items' => [
-                new GitlabIssues(),
                 new GitlabMergeRequests(),
             ],
         ];
@@ -81,15 +80,16 @@ class UpdateStats extends Command
             $stats[$index] = [
                 'label' => $group['label'],
                 'showTitle' => $group['showTitle'],
-                'showEmpty' => $group['showEmpty'],
                 'stats' => [],
             ];
             foreach ($group['items'] as $stat) {
-
-                $stats[$index]['stats'][] = [
-                    'name' => $stat->getName(),
-                    'value' => $stat->getValue(),
-                ];
+                $value = $stat->getValue();
+                if($group['showEmpty'] || $value > 0) {
+                    $stats[$index]['stats'][] = [
+                        'name' => $stat->getName(),
+                        'value' => $value,
+                    ];
+                }
             }
         }
 

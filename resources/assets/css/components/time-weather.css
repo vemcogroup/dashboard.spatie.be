@@ -6,7 +6,8 @@
     grid-template-areas: 
             "empty"
             "content"
-            "timezone";
+            "timezone"
+            "uptime";
 }
 
 .time-weather__content {
@@ -50,4 +51,12 @@
     text-transform: uppercase;
     font-size: var(--font-size-xs);
     grid-area: timezone;
+}
+/**/
+.time-weather__uptime {
+    align-self: end;
+    color: var(--color);
+    font-weight: 300;
+    font-size: var(--font-size-xxs);
+    grid-area: uptime;
 }

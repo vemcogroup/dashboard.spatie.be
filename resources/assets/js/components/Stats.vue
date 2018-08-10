@@ -1,9 +1,9 @@
 <template>
     <tile :position="position" modifiers="overflow">
         <section>
-            <ul class="stats__group" v-for="(group ,index) in stats" :key="index">
+            <ul class="stats__group" v-for="(group ,index) in stats" v-if="group.stats.length" :key="index">
                 <div class="stats__title" v-if="group.showTitle">{{ group.label }}</div>
-                <li v-for="stat in group.stats" class="statistic" v-if="group.showEmpty || stat.value > 0">
+                <li v-for="stat in group.stats" class="statistic">
                     <div class="stats__sub_title">
                         {{ stat.name }}
                     </div>

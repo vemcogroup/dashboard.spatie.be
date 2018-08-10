@@ -12,11 +12,11 @@ class FetchGitlabTasksByLabel extends Command
 
     protected $description = 'Fetch tasks by label from Gitlab';
 
-    protected $url = null;
+    protected $url;
 
-    protected $httpClient = null;
+    protected $httpClient;
 
-    protected $projectId = null;
+    protected $projectId;
 
     protected $issues = [];
 

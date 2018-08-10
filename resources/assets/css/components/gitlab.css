@@ -57,6 +57,18 @@
     background-color: var(--blue);
 }
 
+.gitlab-issue__weight {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-style: normal;
+    display: inline-block;
+    background-color: var(--gray-dark);
+}
+
 .gitlab-issue__milestone {
     color: #fff;
     font-size: 14px;

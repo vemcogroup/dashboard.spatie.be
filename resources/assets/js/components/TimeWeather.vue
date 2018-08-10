@@ -12,6 +12,7 @@
                 </span>
             </time>
             <span class="time-weather__time-zone">{{ weatherCity }}</span>
+            <span class="time-weather__uptime">Uptime: {{ up }}</span>
         </section>
     </tile>
 </template>
@@ -50,6 +51,8 @@ export default {
         return {
             date: '',
             time: '',
+            up: '',
+            created: '',
             weather: {
                 temperature: '',
                 iconClass: '',
@@ -58,6 +61,8 @@ export default {
     },
 
     created() {
+        this.created = new Date();
+
         this.refreshTime();
         setInterval(this.refreshTime, 1000);
 
@@ -73,6 +78,7 @@ export default {
             this.time = moment()
                 .tz(this.timeZone)
                 .format(this.timeFormat);
+            this.up = moment(this.created).fromNow();
         },
 
         async fetchWeather() {
@@ -81,6 +87,6 @@ export default {
             this.weather.temperature = conditions.temp;
             this.weather.iconClass = `wi-yahoo-${conditions.code}`;
         },
-    },
+    }
 };
 </script>

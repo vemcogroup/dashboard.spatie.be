@@ -12,8 +12,11 @@
                     </div>
                     <div class="statistic">
                         <span>
+                            <span class="gitlab-issue__weight" v-if="task.weight">
+                                {{ task.weight }}
+                            </span>
                             <span class="gitlab-issue__milestone" v-if="task.milestone">
-                                {{ task.milestone}}
+                                {{ task.milestone }}
                             </span>
                             <span v-for="(type, index) in task.types" :key="index"class="gitlab-issue__type">
                                 {{ type }}
