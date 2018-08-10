@@ -54,8 +54,9 @@ class ReadFeeds extends Command
 
         foreach(\Feeds::make($url)->get_items() as $item) {
             $feeds[] = [
+                'type' => $name,
                 'date' => $item->get_date(),
-                'title' => $name.': '.$item->get_title(),
+                'title' => $item->get_title(),
             ];
         }
 

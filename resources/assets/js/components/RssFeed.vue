@@ -4,6 +4,7 @@
             <transition name="fade" tag="div" mode="out-in">
                 <div class="feed">
                     <span class="feed__date">{{ date(feed.date) }}</span>
+                    <span class="feed__date">{{ feed.type }}</span>
                     <span class="feed__title">{{ feed.title }}</span>
                 </div>
             </transition>

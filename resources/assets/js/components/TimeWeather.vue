@@ -12,7 +12,7 @@
                 </span>
             </time>
             <span class="time-weather__time-zone">{{ weatherCity }}</span>
-            <span class="time-weather__uptime">Uptime:<br/>{{ up }}</span>
+            <span class="time-weather__uptime">Last refresh<br/>{{ up }}</span>
         </section>
     </tile>
 </template>
