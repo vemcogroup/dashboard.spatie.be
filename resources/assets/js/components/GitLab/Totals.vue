@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import { formatNumber } from '../helpers';
-import echo from '../mixins/echo';
-import Tile from './atoms/Tile';
+import { formatNumber } from '../../helpers';
+import echo from '../../mixins/echo';
+import Tile from '../atoms/Tile';
 import saveState from 'vue-save-state';
 
 export default {

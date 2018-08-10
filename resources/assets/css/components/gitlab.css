@@ -1,0 +1,73 @@
+.gitlab__title {
+    color: var(--blue-light);
+    text-transform: uppercase;
+    font-size: var(--font-size-m);
+}
+
+.gitlab-issue__title {
+    margin-right: 15px;
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+}
+
+.gitlab-issue__sub_title {
+    font-size: var(--font-size-xxs);
+}
+
+.gitlab-issue__assigned {
+    color: var(--blue-light);
+}
+
+.gitlab-issue__assigned__avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.gitlab-issue__content {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+
+.gitlab-issue__type {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-style: normal;
+    border-radius: 100px;
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: var(--red);
+}
+
+.gitlab-issue__tag {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-style: normal;
+    border-radius: 100px;
+    display: inline-block;
+    background-color: var(--blue);
+}
+
+.gitlab-issue__milestone {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-right: 5px;
+    padding: 5px 10px;
+    font-style: normal;
+    display: inline-block;
+    background-color: var(--green-darker);
+}
+
+

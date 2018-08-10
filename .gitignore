@@ -9,4 +9,5 @@ _ide_helper*.php
 /public/media
 /public/mix-manifest.json
 /vendor
+/.idea
 package-lock.json
