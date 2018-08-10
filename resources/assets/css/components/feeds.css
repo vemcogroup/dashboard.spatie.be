@@ -19,3 +19,11 @@
     font-size: var(--font-size-xs);
     background-color: var(--blue-darker);
 }
+
+.feed__count {
+    color: var(--color);
+    vertical-align: top;
+    white-space: nowrap;
+    padding-right: 5px;
+    font-size: var(--font-size-xs)
+}

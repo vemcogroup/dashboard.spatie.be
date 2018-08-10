@@ -1,16 +1,17 @@
 <template>
     <tile :position="position" modifiers="overflow">
-        <section class="feeds" v-if="feeds.length">
-            <transition name="fade" tag="div" mode="out-in">
-                <div class="feed">
-                    <span class="feed__date">{{ date(feed.date) }}</span>
-                    <span class="feed__date">{{ feed.type }}</span>
-                    <span class="feed__title">{{ feed.title }}</span>
-                </div>
-            </transition>
-        </section>
+        <transition name="fade" tag="div" mode="out-in">
+            <section class="feeds statistic" v-if="feeds.length">
+                    <div class="feed">
+                        <span class="feed__date">{{ date(feed.date) }}</span>
+                        <span class="feed__date">{{ feed.type }}</span>
+                        <span class="feed__title">{{ feed.title }}</span>
+                    </div>
+                    <div class="feed__count">{{ current+1 }}/{{ orderedFeeds.length }}</div>
+            </section>
+        </transition>
     </tile>
-</template>
+</template><!---->
 
 <script>
 import echo from '../mixins/echo';
