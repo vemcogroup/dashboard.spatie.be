@@ -26,7 +26,7 @@ class FetchGitlabTasksByLabel extends Command
     {
         $this->projectId = env('GITLAB_PROJECT');
 
-        $this->url = 'https://gitlab.com/api/v4/projects/'.$this->projectId.'/issues?state=opened&scope=all&order_by=updated_at&per_page=100&labels=';
+        $this->url = 'https://gitlab.com/api/v4/projects/'.$this->projectId.'/issues?state=opened&scope=all&order_by=created_at&sort=asc&per_page=100&labels=';
 
         $this->httpClient = new Client([
             'headers' => [

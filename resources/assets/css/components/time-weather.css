@@ -3,8 +3,7 @@
     grid-gap: .25em;
     justify-items: center;
     grid-template-rows: 1fr auto 1fr;
-    grid-template-areas: 
-            "empty"
+    grid-template-areas:
             "content"
             "timezone"
             "uptime";

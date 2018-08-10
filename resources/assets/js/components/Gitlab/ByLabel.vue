@@ -89,7 +89,12 @@ export default {
         orderedTasks() {
             if(this.orderBy === 'weight') {
                 return this.tasks.sort((a, b) => {
-                    return a.weight < b.weight ? 1 : -1;
+                    if(a.weight > b.weight) return -1;
+                    if(a.weight < b.weight) return 1;
+                    if(a.id < b.id) return -1;
+                    if(a.id > b./**/id) return 1;
+
+                    return 0;
                 });
             }
 
