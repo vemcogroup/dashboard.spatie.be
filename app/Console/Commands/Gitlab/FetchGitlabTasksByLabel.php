@@ -91,7 +91,7 @@ class FetchGitlabTasksByLabel extends Command
     protected function findMilestoneColor($milestone)
     {
         if($text = strstr($milestone->description,'#color:')) {
-            return '#' . substr($text, 8, 6);
+            return '#' . substr($text, 7, 6);
         }
 
         return '#8B63B7';
