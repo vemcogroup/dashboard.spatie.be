@@ -23,6 +23,8 @@ class ReadFeeds extends Command
 
     protected $urls = [];
 
+    protected $limitPrUrl = 3;
+
     /**
      * Create a new command instance.
      *
@@ -34,7 +36,7 @@ class ReadFeeds extends Command
 
         $this->urls['AWS'] = 'https://aws.amazon.com/new/feed/';
         $this->urls['PHP'] = 'http://php.net/feed.atom';
-
+        $this->urls['LARAVEL NEWS'] = 'https://feed.laravel-news.com/';
     }
 
     public function handle() : void
@@ -45,19 +47,26 @@ class ReadFeeds extends Command
             $feeds = array_merge($feeds, $this->parseUrl($name, $url));
         }
 
-        event(new FeedsFetched(count($feeds) > 20 ? array_slice($feeds, 0, 20): $feeds));
+        event(new FeedsFetched($feeds));
     }
 
     public function parseUrl($name, $url)
     {
         $feeds = [];
+        $feedCount = 0;
 
         foreach(\Feeds::make($url)->get_items() as $item) {
+
+            if(++$feedCount > $this->limitPrUrl) {
+                break;
+            }
+
             $feeds[] = [
                 'type' => $name,
                 'date' => $item->get_date(),
                 'title' => $item->get_title(),
             ];
+
         }
 
         return $feeds;

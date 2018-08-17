@@ -1,7 +1,7 @@
 <template>
     <tile :position="position" modifiers="overflow">
-        <transition name="fade" tag="div" mode="out-in">
-            <section class="feeds statistic" v-if="feeds.length">
+        <transition name="fade" tag="section" mode="out-in">
+            <section class="feeds statistic" v-if="feeds.length" :key="feed.date">
                     <div class="feed">
                         <span class="feed__date">{{ date(feed.date) }}</span>
                         <span class="feed__date">{{ feed.type }}</span>
@@ -11,7 +11,7 @@
             </section>
         </transition>
     </tile>
-</template><!---->
+</template>
 
 <script>
 import echo from '../mixins/echo';
@@ -84,7 +84,7 @@ export default {
 
 <style scoped>
     .fade-enter-active, .fade-leave-active {
-        transition: opacity 1s
+        transition: opacity 0.5s
     }
     .fade-enter, .fade-leave-to {
         opacity: 0
