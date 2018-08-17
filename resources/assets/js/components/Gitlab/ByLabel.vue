@@ -15,7 +15,7 @@
                             <span class="gitlab-issue__weight" v-if="task.weight">
                                 {{ task.weight }}
                             </span>
-                            <span class="gitlab-issue__milestone" v-if="task.milestone && task.milestoneColour" :style="'background-color: ' + task.milestoneColour">
+                            <span class="gitlab-issue__milestone" v-if="task.milestone && task.milestoneColor" :style="'background-color: ' + task.milestoneColor">
                                 {{ task.milestone }}
                             </span>
                             <span class="gitlab-issue__milestone" v-else-if="task.milestone">

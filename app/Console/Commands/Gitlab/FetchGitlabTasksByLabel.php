@@ -72,7 +72,7 @@ class FetchGitlabTasksByLabel extends Command
                         ];
                     }),
                     'label' => $label,
-                    'milestoneColour' => $gitlabIssue->milestone ? $this->findMilestoneColour($gitlabIssue->milestone) : '',
+                    'milestoneColor' => $gitlabIssue->milestone ? $this->findMilestoneColor($gitlabIssue->milestone) : '',
                     'milestone' => $gitlabIssue->milestone ? $gitlabIssue->milestone->title : '',
                     'tags' => $tags,
                     'types' => $types,
@@ -88,9 +88,9 @@ class FetchGitlabTasksByLabel extends Command
         return $issues;
     }
 
-    protected function findMilestoneColour($milestone)
+    protected function findMilestoneColor($milestone)
     {
-        if($text = strstr($milestone->description,'#colour:')) {
+        if($text = strstr($milestone->description,'#color:')) {
             return '#' . substr($text, 8, 6);
         }
 
