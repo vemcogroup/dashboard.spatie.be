@@ -28,8 +28,7 @@ class Alarms extends ApiIntegration
 
         $activeAlarms = 0;
 
-        foreach ($metricAlarms as $alarm)
-        {
+        foreach ($metricAlarms as $alarm) {
             if ($alarm['StateValue'] != 'OK') {
                 $activeAlarms++;
             }

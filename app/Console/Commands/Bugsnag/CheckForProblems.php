@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Commands\Dynatrace;
+namespace App\Console\Commands\Bugsnag;
 
+use App\ApiIntegration\Bugsnag\BugsnagProblems;
 use Illuminate\Console\Command;
-use App\ApiIntegration\Dynatrace\DynatraceProblems;
 
 class CheckForProblems extends Command
 {
@@ -12,16 +12,16 @@ class CheckForProblems extends Command
      *
      * @var string
      */
-    protected $signature = 'dynatrace:check-for-problems';
+    protected $signature = 'bugsnag:check-for-problems';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Poll Dynatrace for problems';
+    protected $description = 'Poll Bugsnag for problems';
 
-    protected $dynatraceProblems;
+    protected $bugsnagProblems;
 
     /**
      * Create a new command instance.
@@ -32,7 +32,7 @@ class CheckForProblems extends Command
     {
         parent::__construct();
 
-        $this->dynatraceProblems = new DynatraceProblems();
+        $this->bugsnagProblems = new BugsnagProblems();
     }
 
     /**
@@ -42,7 +42,7 @@ class CheckForProblems extends Command
      */
     public function handle()
     {
-        $this->info($this->dynatraceProblems->getValue());
+        $this->info($this->bugsnagProblems->getValue());
 
         return true;
     }

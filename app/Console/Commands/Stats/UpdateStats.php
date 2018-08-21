@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Stats;
 
+use App\ApiIntegration\Bugsnag\BugsnagProblems;
 use App\ApiIntegration\Gitlab\GitlabDeployOnStaging;
 use App\ApiIntegration\Gitlab\GitlabSolutionFinished;
 use Illuminate\Console\Command;
@@ -46,6 +47,7 @@ class UpdateStats extends Command
             'showEmpty' => false,
             'items' => [
                 new DynatraceProblems(),
+                new BugsnagProblems(),
                 new Alarms(),
                 new Metric(env('CACHETHQ_METRIC')),
             ],
@@ -72,7 +74,7 @@ class UpdateStats extends Command
         ];
     }
 
-    public function handle() : void
+    public function handle(): void
     {
         $stats = [];
 
@@ -84,7 +86,7 @@ class UpdateStats extends Command
             ];
             foreach ($group['items'] as $stat) {
                 $value = $stat->getValue();
-                if($group['showEmpty'] || $value > 0) {
+                if ($group['showEmpty'] || $value > 0) {
                     $stats[$index]['stats'][] = [
                         'name' => $stat->getName(),
                         'value' => $value,
