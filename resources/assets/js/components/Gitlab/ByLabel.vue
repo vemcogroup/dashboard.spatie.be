@@ -21,6 +21,9 @@
                             <span class="gitlab-issue__milestone" v-else-if="task.milestone">
                                 {{ task.milestone }}
                             </span>
+                            <span class="gitlab-issue__weight" v-if="task.dueDate">
+                                {{ date(task.dueDate) }}
+                            </span>
                             <span v-for="(type, index) in task.types" :key="index"class="gitlab-issue__type">
                                 {{ type }}
                             </span>
@@ -49,11 +52,12 @@
         </section>
     </tile>
 </template>
-w
+
 <script>
 import echo from '../../mixins/echo';
 import Tile from '../atoms/Tile';
 import saveState from 'vue-save-state';
+import moment from 'moment';
 
 export default {
     components: {
@@ -86,7 +90,10 @@ export default {
         },
         toHours(seconds) {
             return seconds ? Math.round(seconds/60/60): 0;
-        }
+        },
+        date(date) {
+            return moment(date).fromNow();
+        },
     },
     computed: {
         orderedTasks() {

@@ -1,3 +1,12 @@
+.gitlab-milestone__color {
+    background-color: rgb(47, 53, 58);
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+    border-radius: 50px;
+}
+
 .gitlab__title {
     color: var(--blue-light);
     text-transform: uppercase;

@@ -8,6 +8,7 @@ import Calendar from './components/Calendar';
 import Github from './components/Github';
 import GitlabTotals from './components/Gitlab/Totals';
 import GitlabLabels from './components/Gitlab/ByLabel';
+import GitlabMilestones from './components/Gitlab/Milestones';
 import InternetConnection from './components/InternetConnection';
 import Music from './components/Music';
 import Npm from './components/Npm';
@@ -29,6 +30,7 @@ new Vue({
         Github,
         GitlabTotals,
         GitlabLabels,
+        GitlabMilestones,
         InternetConnection,
         Music,
         Npm,

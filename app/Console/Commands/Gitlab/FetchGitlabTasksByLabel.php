@@ -62,6 +62,14 @@ class FetchGitlabTasksByLabel extends Command
                     $types[] = $label;
                     continue;
                 }
+
+                $dueDate = '';
+                if($gitlabIssue->due_date) {
+                    $dueDate = $gitlabIssue->due_date;
+                } else if($gitlabIssue->milestone && $gitlabIssue->milestone->due_date) {
+                    $dueDate = $gitlabIssue->milestone->due_date;
+                }
+
                 $issues[] = [
                     'id' => $gitlabIssue->iid,
                     'title' => $gitlabIssue->title,
@@ -71,6 +79,7 @@ class FetchGitlabTasksByLabel extends Command
                             'avatar' => $assignee->avatar_url,
                         ];
                     }),
+                    'dueDate' => $dueDate,
                     'label' => $label,
                     'milestoneColor' => $gitlabIssue->milestone ? $this->findMilestoneColor($gitlabIssue->milestone) : '',
                     'milestone' => $gitlabIssue->milestone ? $gitlabIssue->milestone->title : '',

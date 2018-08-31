@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Command;
 use App\Console\Commands\Feed\ReadFeeds;
 use App\Console\Commands\Stats\UpdateStats;
+use App\Console\Commands\Gitlab\FetchGitlabMilestones;
 use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
 use App\Console\Components\InternetConnection\SendHeartbeat;
 
@@ -18,6 +19,7 @@ class UpdateDashboard extends Command
     {
         $this->call(UpdateStats::class);
         $this->call(FetchGitlabTasksByLabel::class);
+        $this->call(FetchGitlabMilestones::class);
         $this->call(SendHeartbeat::class);
         $this->call(ReadFeeds::class);
     }
