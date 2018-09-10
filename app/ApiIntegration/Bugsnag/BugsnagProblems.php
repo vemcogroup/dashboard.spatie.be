@@ -26,7 +26,7 @@ class BugsnagProblems extends ApiIntegration
     {
         $this->name = 'Bugsnag';
         $this->id = env('BUGSNAG_PROJECT_ID');
-        $this->url = "https://api.bugsnag.com/projects/$this->id/errors?filters[error.status][][type]=eq&filters[error.status][][value]=open";
+        $this->url = "https://api.bugsnag.com/projects/$this->id/errors?per_page=100&filters[error.status][][type]=eq&filters[error.status][][value]=open";
 
         $this->httpClient = new Client([
             'headers' => [
