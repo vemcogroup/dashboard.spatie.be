@@ -1,10 +1,27 @@
 .gitlab-milestone__color {
-    background-color: rgb(47, 53, 58);
-    display: inline-block;
-    height: 25px;
     width: 25px;
+    height: 25px;
     margin-right: 5px;
     border-radius: 50px;
+    display: inline-block;
+    background-color: rgb(47, 53, 58);
+    border: 1px solid var(--gray-dark);
+}
+.gitlab-milestone__title {
+    margin-right: 15px;
+    font-size: var(--font-size-xs);
+}
+.gitlab-milestone__text {
+    margin-right: 5px;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+}
+
+.gitlab-milestone__progress {
+    height: 5px;
+    display: block;
+    background-color: darkgreen;
 }
 
 .gitlab__title {

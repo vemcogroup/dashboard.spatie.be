@@ -5,22 +5,24 @@
             <ul>
                 <li class="gitlab-issue__content" v-for="milestone in orderedMilestones">
                     <div class="statistic">
-                        <span class="gitlab-issue__title">
-                            <span class="gitlab-milestone__color" :style="'background-color:' + milestone.color"></span>
-                            {{ milestone.title }}
-                        </span>
+                        <div class="gitlab-milestone__title">
+                            <div class="gitlab-milestone__text">
+                                <div class="gitlab-milestone__color" :style="'background-color:' + milestone.color"></div>
+                                {{ milestone.title }}
+                            </div>
+                            <div class="gitlab-issue__weight">{{ date(milestone.dueDate) }}</div>
+                        </div>
                         <div>
                             <div class="statistic__count">{{ milestone.issues.percent }}%</div>
                         </div>
                     </div>
                     <div class="statistic">
-                        <span class="gitlab-issue__weight">
-                            {{ date(milestone.dueDate) }}
-                        </span>
+                        <span></span>
                         <span class="gitlab-issue__sub_title">
-                             Tasks: {{ milestone.issues.total}}
+                             Tasks: {{ milestone.issues.total }}
                         </span>
                     </div>
+                    <div class="gitlab-milestone__progress" :style="'width:' + milestone.issues.percent + '%'"></div>
                 </li>
             </ul>
         </section>

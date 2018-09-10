@@ -67,7 +67,7 @@ class FetchGitlabMilestones extends Command
         }
 
         if ($issues['total']) {
-            $issues['percent'] = $issues['closed'] / $issues['total'] * 100;
+            $issues['percent'] = number_format($issues['closed'] / $issues['total'] * 100, 1);
         }
 
         return $issues;
