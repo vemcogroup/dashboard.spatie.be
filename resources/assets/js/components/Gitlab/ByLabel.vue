@@ -24,10 +24,10 @@
                             <span class="gitlab-issue__weight" v-if="task.dueDate">
                                 {{ date(task.dueDate) }}
                             </span>
-                            <span v-for="(type, index) in task.types" :key="index"class="gitlab-issue__type">
+                            <span v-for="(type, index) in task.types" :key="index" class="gitlab-issue__type">
                                 {{ type }}
                             </span>
-                            <span v-for="(tag, index) in task.tags" :key="index"class="gitlab-issue__tag">
+                            <span v-for="(tag, index) in task.tags" :key="index" class="gitlab-issue__tag">
                                 {{ tag }}
                             </span>
                         </span>

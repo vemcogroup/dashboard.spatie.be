@@ -51,14 +51,26 @@ class FetchGitlabMilestones extends Command
             'active' => 0,
             'closed' => 0,
             'total' => 0,
+            'bugs' => 0,
             'percent' => 0,
         ];
 
         foreach (json_decode($this->httpClient->get($this->url)->getBody()->getContents()) as $issue) {
 
             ++$issues['total'];
+            $isBug = false;
 
-            if ($issue->state === 'closed') {
+            if ($issue->state !== 'closed') {
+                foreach ($issue->labels as $label) {
+                    if ($label === '/bug') {
+                        $isBug = true;
+                        ++$issues['bugs'];
+                        continue;
+                    }
+                }
+            }
+
+            if ($issue->state === 'closed' || $isBug) {
                 ++$issues['closed'];
             } else {
                 ++$issues['active'];

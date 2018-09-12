@@ -11,6 +11,9 @@
                                 {{ milestone.title }}
                             </div>
                             <div class="gitlab-issue__weight">{{ date(milestone.dueDate) }}</div>
+                            <span v-if="milestone.issues.bugs" class="gitlab-issue__type">
+                                {{ milestone.issues.bugs }}
+                            </span>
                         </div>
                         <div>
                             <div class="statistic__count">{{ milestone.issues.percent }}%</div>
