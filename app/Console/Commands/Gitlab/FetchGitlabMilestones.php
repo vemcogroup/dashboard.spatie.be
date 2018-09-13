@@ -70,10 +70,12 @@ class FetchGitlabMilestones extends Command
                 }
             }
 
-            if ($issue->state === 'closed' || $isBug) {
-                ++$issues['closed'];
-            } else {
-                ++$issues['active'];
+            if(!$isBug) {
+                if ($issue->state === 'closed') {
+                    ++$issues['closed'];
+                } else {
+                    ++$issues['active'];
+                }
             }
 
         }
