@@ -78,11 +78,11 @@ export default {
         getEventHandlers() {
             return {
                 'GitLab.LabelsFetched': response => {
-                    this.tasks = response.tasks[this.label];
+                    this.tasks = response.tasks[this.label] ? response.tasks[this.label] : [];
                 },
             };
         },
-
+/**/
         getSaveStateConfig() {
             return {
                 cacheKey: `gitlab-labels-${this.label}`,
