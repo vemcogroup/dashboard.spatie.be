@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(UpdateStats::class)->everyFiveMinutes();
         $schedule->command(FetchGitlabTasksByLabel::class)->everyFiveMinutes();
         $schedule->command(ReadFeeds::class)->everyFiveMinutes();
-        $schedule->command(FetchGitlabMilestones::class)->everyFifteenMinutes();
+        $schedule->command(FetchGitlabMilestones::class)->everyFiveMinutes();
     }
 
     /**

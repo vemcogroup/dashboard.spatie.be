@@ -17,10 +17,10 @@ class UpdateDashboard extends Command
 
     public function handle(): void
     {
+        $this->call(SendHeartbeat::class);
         $this->call(UpdateStats::class);
         $this->call(FetchGitlabTasksByLabel::class);
-        $this->call(FetchGitlabMilestones::class);
-        $this->call(SendHeartbeat::class);
         $this->call(ReadFeeds::class);
+        $this->call(FetchGitlabMilestones::class);
     }
 }
