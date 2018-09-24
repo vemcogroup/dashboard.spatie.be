@@ -39,7 +39,7 @@ class FetchGitlabMilestones extends Command
 
     protected function fetchMilestoneIssues($milestoneId)
     {
-        $this->url = 'https://gitlab.com/api/v4/projects/' . $this->projectId . '/milestones/' . $milestoneId . '/issues';
+        $this->url = 'https://gitlab.com/api/v4/projects/' . $this->projectId . '/milestones/' . $milestoneId . '/issues?per_page=100';
 
         $this->httpClient = new Client([
             'headers' => [
