@@ -47,16 +47,19 @@ new Vue({
     created() {
         let options = {
             broadcaster: 'pusher',
-            key: window.dashboard.pusherKey,
-            cluster: window.dashboard.pusherCluster,
+            key: window.dashboard.socketAppKey,
+            cluster: window.dashboard.socketCluster,
+            encrypted: window.dashboard.socketEncrypted,
         };
-
-        if (window.dashboard.usingNodeServer) {
-            options = {
-                broadcaster: 'socket.io',
-                host: 'http://dashboard.spatie.be:6001',
-            };
-        }
+        if(window.dashboard.socketHost) {
+            options.cluster = '';
+            options.encrypted = window.dashboard.socketEncrypted;
+            options.disableStats = window.dashboard.socketDisableStats;
+            options.wsHost = window.dashboard.socketHost;
+            options.wsPort = window.dashboard.socketPort;
+            options.wssPort = window.dashboard.socketSecurePort;
+            options.disableStats = true;
+        };
 
         this.echo = new Echo(options);
     },

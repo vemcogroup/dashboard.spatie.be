@@ -80,8 +80,6 @@ w
 
                 let aDueDate = moment(a.dueDate);
                 let bDueDate = moment(b.dueDate);
-                console.log(aDueDate + ' / ' + bDueDate);
-                console.log(aDueDate.isBefore(bDueDate) + ' / ' + aDueDate.isAfter(bDueDate));
 
                 if(aDueDate.isBefore(bDueDate)) return -1;
                 if(aDueDate.isAfter(bDueDate)) return 1;

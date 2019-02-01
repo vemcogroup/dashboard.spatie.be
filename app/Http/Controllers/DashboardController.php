@@ -10,13 +10,15 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard')->with([
-            'pusherKey' => config('broadcasting.connections.pusher.key'),
-
-            'pusherCluster' => config('broadcasting.connections.pusher.options.cluster'),
+            'socketAppKey' => config('services.pusher.key'),
+            'socketCluster' => config('services.pusher.cluster'),
+            'socketHost' => config('services.pusher.host'),
+            'socketPort' => (int) config('services.pusher.port'),
+            'socketSecurePort' => (int) config('services.pusher.secure_port'),
+            'socketDisableStats' => (bool) config('services.pusher.disable_stats'),
+            'socketEncrypted' => (bool) config('services.pusher.encrypted'),
 
             'initialTweets' => TweetHistory::all(),
-
-            'usingNodeServer' => usingNodeServer(),
         ]);
     }
 }

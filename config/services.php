@@ -14,6 +14,16 @@ return [
         'users' => explode(',', env('LAST_FM_USERS')),
     ],
 
+    'pusher' => [
+        'key' => env('PUSHER_APP_KEY', ''),
+        'cluster' => env('PUSHER_APP_CLUSTER', ''),
+        'host' => env('PUSHER_APP_HOST', ''),
+        'port' => env('PUSHER_APP_PORT', 80),
+        'secure_port' => env('PUSHER_APP_SECURE_PORT', 443),
+        'disable_stats' => env('PUSHER_APP_DISABLE_STATS', false),
+        'encrypted' => env('PUSHER_APP_ENCRYPTED', false),
+    ],
+
     'packagist' => [
         'vendor' => env('PACKAGIST_VENDOR'),
     ],

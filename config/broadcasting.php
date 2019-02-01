@@ -32,11 +32,25 @@ return [
 
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_KEY'),
-            'secret' => env('PUSHER_SECRET'),
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => env('PUSHER_CLUSTER', 'mt1'),
+                'cluster' => env('PUSHER_APP_CLUSTER', 'mt1'),
+            ],
+        ],
+
+        'vemsocket' => [
+            'driver' => 'pusher',
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
+            'options' => [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'host' => env('BROADCAST_HOST'),
+                'port' => env('BROADCAST_PORT'),
+                'scheme' => env('BROADCAST_SCHEME'),
+                'encrypted' => env('BROADCAST_ENCRYPTED'),
             ],
         ],
 
