@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Console\Commands\Feed\ReadFeeds;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\Stats\UpdateStats;
+use App\Console\Components\Packagist\FetchTotals;
 use App\Console\Commands\Gitlab\FetchGitlabMilestones;
 use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(FetchGitlabTasksByLabel::class)->everyFiveMinutes();
         $schedule->command(ReadFeeds::class)->everyFiveMinutes();
         $schedule->command(FetchGitlabMilestones::class)->everyFiveMinutes();
+        $schedule->command(FetchTotals::class)->everyFiveMinutes();
     }
 
     /**
