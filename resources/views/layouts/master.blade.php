@@ -2,21 +2,14 @@
 <html lang="en">
 <head>
     <title>Dashboard</title>
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,900'
-          rel='stylesheet'
-          type='text/css'>
+    <script src="//d2wy8f7a9ursnm.cloudfront.net/v5.0/bugsnag.min.js"></script>
+    <script>window.bugsnagClient = bugsnag('cb74377a340ff0a2f3a5ab504521f95f')</script>
     <link href="{{ mix("css/app.css") }}" rel="stylesheet"/>
+    <script src="{{ mix("js/app.js") }}" defer></script>
     <meta name="google" value="notranslate">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-
     @yield('content')
-
-    @if(usingNodeServer())
-        <script src="{{ config('app.url') }}:6001/socket.io/socket.io.js"></script>
-    @endif
-    <script src="{{ mix("js/app.js") }}"></script>
-
 </body>
 </html>

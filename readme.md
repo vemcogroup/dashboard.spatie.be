@@ -4,18 +4,16 @@ This repo contains the source code of our dashboard.
 
 ## Example
 
-<img style="max-width:100%; height: auto" src="http://spatie.github.io/dashboard.spatie.be/images/screenshot20170620.jpg">
+<img style="max-width:100%; height: auto" src="http://spatie.github.io/dashboard.spatie.be/images/screenshot20181118.png">
 
 Our configured dashboard has following tiles:
 
 - Twitter stream with all tweets mentioning and quoting [@spatie_be](https://twitter.com/spatie_be)
-- Team calendar via [Google Calendar](https://google.com/calendar)
-- Music currently playing via [Last.fm](https://last.fm)
 - Clock/date/weather
-- Team todo's via GitHub files
+- Team tile with todo's via GitHub files, remote status via Slack, current tracks via [Last.fm](https://last.fm)
 - [Packagist](https://packagist.org) downloads
-- [NPM](https://npmjs.com) downloads
 - Internet up/down via WebSockets
+- [Velo](https://www.velo-antwerpen.be/en) status
 
 ## How it works
 
