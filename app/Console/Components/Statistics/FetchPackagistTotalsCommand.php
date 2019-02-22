@@ -25,6 +25,7 @@ class FetchPackagistTotalsCommand extends Command
                 })
                 ->pipe(function ($packageProperties) {
                     return [
+                        'daily' => $packageProperties->sum('downloads.daily'),
                         'monthly' => $packageProperties->sum('downloads.monthly'),
                         'total' => $packageProperties->sum('downloads.total'),
                     ];

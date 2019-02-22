@@ -3,49 +3,55 @@ import './bootstrap.js';
 import Echo from 'laravel-echo';
 import Vue from 'vue';
 
-import Dashboard from './components/Dashboard';
-import Calendar from './components/Calendar';
-import Statistics from './components/Statistics';
-import InternetConnection from './components/InternetConnection';
-import TeamMember from './components/TeamMember';
-import TimeWeather from './components/TimeWeather';
-import Trains from './components/Trains';
 import Twitter from './components/Twitter';
-import Uptime from './components/Uptime';
-import Velo from './components/Velo';
 import TileTimer from './components/TileTimer';
+import Dashboard from './components/Dashboard';
+import Statistics from './components/Statistics';
+import TimeWeather from './components/TimeWeather';
+import InternetConnection from './components/InternetConnection';
+
+import Stats from './components/Stats';
+import RssFeed from './components/RssFeed';
+import GitlabTotals from './components/Gitlab/Totals';
+import GitlabLabels from './components/Gitlab/ByLabel';
+import GitlabMilestones from './components/Gitlab/Milestones';
 
 new Vue({
     el: '#dashboard',
 
     components: {
         Dashboard,
-        Calendar,
         Statistics,
         InternetConnection,
-        TeamMember,
         TimeWeather,
-        Trains,
         Twitter,
-        Uptime,
-        Velo,
         TileTimer,
+
+        Stats,
+        RssFeed,
+        GitlabLabels,
+        GitlabMilestones,
+        GitlabTotals,
     },
 
     created() {
-        let config = {
+
+        let options = {
             broadcaster: 'pusher',
-            key: window.dashboard.pusherKey,
-            wsHost: window.location.hostname,
-            wsPath: window.dashboard.clientConnectionPath,
-            wsPort: window.dashboard.wsPort,
-            disableStats: true,
-        }
+            key: window.dashboard.socketAppKey,
+            cluster: window.dashboard.socketCluster,
+            encrypted: window.dashboard.socketEncrypted,
+        };
+        if(window.dashboard.socketHost) {
+            options.cluster = '';
+            options.encrypted = window.dashboard.socketEncrypted;
+            options.disableStats = window.dashboard.socketDisableStats;
+            options.wsHost = window.dashboard.socketHost;
+            options.wsPort = window.dashboard.socketPort;
+            options.wssPort = window.dashboard.socketSecurePort;
+            options.disableStats = true;
+        };
 
-        if (window.dashboard.environment === 'local') {
-            config.wsPort = 6001;
-        }
-
-        this.echo = new Echo(config);
+        this.echo = new Echo(options);
     },
 });

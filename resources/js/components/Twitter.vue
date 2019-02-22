@@ -72,7 +72,7 @@ export default {
     },
 
     created() {
-        this.tweets = this.initialTweets.map(tweetProperties => new Tweet(tweetProperties));
+        //this.tweets = this.initialTweets.map(tweetProperties => new Tweet(tweetProperties));
 
         setInterval(this.processWaitingLine, 1000);
     },

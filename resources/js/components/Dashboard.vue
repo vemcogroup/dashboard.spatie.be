@@ -16,7 +16,7 @@ export default {
 
     data() {
         return {
-            mode: 'light-mode',
+            mode: 'dark-mode',
         };
     },
 

@@ -42,6 +42,20 @@ return [
             ],
         ],
 
+        'vemsocket' => [
+            'driver' => 'pusher',
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
+            'options' => [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'host' => env('BROADCAST_HOST'),
+                'port' => env('BROADCAST_PORT'),
+                'scheme' => env('BROADCAST_SCHEME'),
+                'encrypted' => env('BROADCAST_ENCRYPTED'),
+            ],
+        ],
+
         'redis' => [
             'driver' => 'redis',
             'connection' => 'default',

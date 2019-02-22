@@ -1,33 +1,23 @@
 <template>
     <tile :position="position">
-        <div class="grid gap-padding h-full markup">
+        <section>
+            <h1>Packagist</h1>
             <ul class="align-self-center">
-                <li>
-                    <span v-html="emoji('✨')" />
-                    <span class="font-bold variant-tabular">{{ formatNumber(githubStars) }}</span>
+                <li class="flex justify-between border-b-2 py-1 border-grey-darker">
+                    <span>24 hours</span>
+                    <span class="gold">{{ formatNumber(packagistDaily) }}</span>
                 </li>
-                <li>
-                    <span>Contributors</span>
-                    <span class="font-bold variant-tabular">{{ formatNumber(githubContributors) }}</span>
-                </li>
-                <li>
-                    <span>Issues</span>
-                    <span class="font-bold variant-tabular">{{ formatNumber(githubIssues) }}</span>
-                </li>
-                <li>
-                    <span>Pull Requests</span>
-                    <span class="font-bold variant-tabular">{{ formatNumber(githubPullRequests) }}</span>
-                </li>
-                <li>
+                <li class="flex justify-between border-b-2 py-1 border-grey-darker">
                     <span>30 days</span>
-                    <span class="font-bold variant-tabular">{{ formatNumber(packagistMonthly) }}</span>
+                    <span class="gold">{{ formatNumber(packagistMonthly) }}</span>
                 </li>
-                <li>
+                <li class="flex justify-between border-b-2 py-1 border-grey-darker">
                     <span>Total</span>
-                    <span class="font-bold variant-tabular">{{ formatNumber(packagistTotal) }}</span>
+                    <span class="gold">{{ formatNumber(packagistTotal) }}</span>
                 </li>
             </ul>
-        </div>
+
+        </section>
     </tile>
 </template>
 
@@ -54,6 +44,7 @@ export default {
             githubContributors: 0,
 
             packagistTotal: 0,
+            packagistDaily: 0,
             packagistMonthly: 0,
         };
     },
@@ -73,6 +64,7 @@ export default {
 
                 'Statistics.PackagistTotalsFetched': response => {
                     this.packagistTotal = response.total;
+                    this.packagistDaily = response.daily;
                     this.packagistMonthly = response.monthly;
                 },
             };

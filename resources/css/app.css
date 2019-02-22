@@ -2,4 +2,40 @@
 @import './fonts/*';
 @import './components/*';
 
+.badge {
+    @apply py-1;
+    @apply px-2;
+    @apply mr-1;
+    @apply text-xs;
+    @apply rounded-lg;
+    @apply inline-block;
+}
+
+.weight {
+    @apply py-1;
+    @apply px-2;
+    @apply mr-1;
+    @apply text-xs;
+    @apply bg-grey-darker;
+    @apply inline-block;
+}
+
+.gold {
+    @apply text-yellow-dark;
+}
+
+.member {
+    @apply w-10;
+    @apply h-10;
+    @apply ml-2;
+    @apply inline-block;
+    @apply rounded-full;
+}
+
+h1 {
+    @apply text-2xl;
+    @apply uppercase;
+    @apply text-blue;
+}
+
 @tailwind utilities;
