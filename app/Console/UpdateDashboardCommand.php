@@ -7,7 +7,8 @@ use App\Console\Commands\Feed\ReadFeeds;
 use App\Console\Commands\Stats\UpdateStats;
 use App\Console\Commands\Gitlab\FetchGitlabMilestones;
 use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
-use App\Console\Components\InternetConnection\SendHeartbeat;
+use App\Console\Components\Dashboard\SendHeartbeatCommand;
+use App\Console\Components\Statistics\FetchPackagistTotalsCommand;
 
 class UpdateDashboardCommand extends Command
 {
@@ -17,10 +18,11 @@ class UpdateDashboardCommand extends Command
 
     public function handle(): void
     {
-        $this->call(SendHeartbeat::class);
+        $this->call(SendHeartbeatCommand::class);
         $this->call(UpdateStats::class);
         $this->call(FetchGitlabTasksByLabel::class);
         $this->call(ReadFeeds::class);
         $this->call(FetchGitlabMilestones::class);
+        $this->call(FetchPackagistTotalsCommand::class);
     }
 }
