@@ -1,13 +1,13 @@
 <template>
     <tile :position="position" modifiers="overflow">
         <transition name="fade" tag="section" mode="out-in">
-            <section class="flex h-full justify-between items-center content-center" v-if="feeds.length" :key="feed.date">
-                    <div>
-                        <div class="badge bg-blue-darker">{{ date(feed.date) }}</div>
-                        <div class="badge uppercase bg-blue-darker">{{ feed.type }}</div>
-                        {{ feed.title }}
-                    </div>
-                    <div>{{ current+1 }}/{{ orderedFeeds.length }}</div>
+            <section class="flex h-full w-full justify-between items-center content-center" v-if="feeds.length" :key="feed.date">
+                <div class="flex">
+                    <div class="badge bg-blue-darker">{{ date(feed.date) }}</div>
+                    <div class="badge uppercase bg-blue-darker">{{ feed.type }}</div>
+                </div>
+                <div class="flex-1 mr-2 truncate">{{ feed.title }}</div>
+                <div>{{ current+1 }}/{{ orderedFeeds.length }}</div>
             </section>
         </transition>
     </tile>

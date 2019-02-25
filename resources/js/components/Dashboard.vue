@@ -26,6 +26,9 @@ export default {
                 'Dashboard.UpdateAppearance': response => {
                     this.mode = response.mode;
                 },
+                'Dashboard.Reload': response => {
+                    window.location.reload()
+                },
             };
         },
 

@@ -4,7 +4,7 @@
             <h1>Planned releases</h1>
             <ul>
                 <li class="border-b-2 py-3 border-grey-darker" v-for="milestone in orderedMilestones">
-                    <div class="flex justify-between mb-1">
+                    <div class="flex justify-between">
                         <div class="">
                             <div class="inline-block uppercase">
                                 <div class="inline-block w-4 h-3" :style="'background-color:' + milestone.color"></div>

@@ -1,8 +1,8 @@
 <template>
     <tile :position="position" modifiers="overflow">
         <section>
+            <h1>Stats</h1>
             <ul v-for="(group ,index) in stats" v-if="group.stats.length" :key="index">
-                <div class="uppercase px-2 py-1 mt-1 bg-blue-darker" v-if="group.showTitle">{{ group.label }}</div>
                 <li v-for="stat in group.stats" class="flex justify-between py-1 border-b-2 border-grey-darker">
                     {{ stat.name }}
                     <div class="gold">{{ stat.value }}</div>

@@ -22,10 +22,10 @@
                             <div class="weight" v-if="task.dueDate">
                                 {{ date(task.dueDate) }}
                             </div>
-                            <div v-for="(type, index) in task.types" :key="index" class="badge bg-blue">
+                            <div v-for="(type, index) in task.types" :key="index" class="badge bg-blue-dark">
                                 {{ type }}
                             </div>
-                            <div v-for="(tag, index) in task.tags" :key="index" class="badge bg-blue">
+                            <div v-for="(tag, index) in task.tags" :key="index" class="badge bg-blue-dark">
                                 {{ tag }}
                             </div>
                         </div>
