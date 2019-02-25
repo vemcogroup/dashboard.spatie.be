@@ -21,8 +21,8 @@
         "knplabs/github-api": "^2.4",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "~1.0",
-        "ohdearapp/laravel-ohdear-webhooks": "^1.0",
         "nunomaduro/collision": "~2.0",
+        "ohdearapp/laravel-ohdear-webhooks": "^1.0",
         "pda/pheanstalk": "^3.1",
         "php-http/guzzle6-adapter": "^1.1",
         "pusher/pusher-php-server": "^3.0",
@@ -32,7 +32,8 @@
         "spatie/laravel-twitter-streaming-api": "^1.0",
         "spatie/last-fm-now-playing": "^1.0",
         "spatie/packagist-api": "^1.0.1",
-        "spatie/valuestore": "^1.1"
+        "spatie/valuestore": "^1.1",
+        "willvincent/feeds": "^1.1"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
