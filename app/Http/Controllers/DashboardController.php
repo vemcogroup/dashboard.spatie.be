@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 use App\Services\TweetHistory\TweetHistory;
 
-class DashboardController extends Controller
+class DashboardController
 {
-    public function index()
+    public function __invoke()
     {
         return view('dashboard')->with([
             'socketAppKey' => config('services.pusher.key'),
@@ -17,7 +16,8 @@ class DashboardController extends Controller
             'socketSecurePort' => (int) config('services.pusher.secure_port'),
             'socketDisableStats' => (bool) config('services.pusher.disable_stats'),
             'socketEncrypted' => (bool) config('services.pusher.encrypted'),
-
+            'openWeatherMapKey' => config('services.open_weather_map.key'),
+            'environment' => app()->environment(),
             'initialTweets' => TweetHistory::all(),
         ]);
     }

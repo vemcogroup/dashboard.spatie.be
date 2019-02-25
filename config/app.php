@@ -14,6 +14,8 @@ return [
 
     'name' => 'Dashboard',
 
+    'access_token' => env('ACCESS_TOKEN'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -174,6 +176,10 @@ return [
         Spatie\LaravelTwitterStreamingApi\TwitterStreamingApiServiceProvider::class,
         App\Services\GitHub\GitHubServiceProvider::class,
         Aws\Laravel\AwsServiceProvider::class,
+        App\Services\Slack\SlackServiceProvider::class,
+        App\Services\Velo\VeloServiceProvider::class,
+        App\Services\Trains\IRailServiceProvider::class,
+        App\Services\Buienradar\BuienradarServiceProvider::class,
     ],
 
     /*

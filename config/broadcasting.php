@@ -36,7 +36,9 @@ return [
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER', 'mt1'),
+                'host' => '127.0.0.1',
+                'port' => 6001,
+                'scheme' => 'http'
             ],
         ],
 
@@ -51,17 +53,6 @@ return [
                 'port' => env('BROADCAST_PORT'),
                 'scheme' => env('BROADCAST_SCHEME'),
                 'encrypted' => env('BROADCAST_ENCRYPTED'),
-            ],
-        ],
-
-        'laravel-echo-server' => [
-            'driver' => 'pusher',
-            'key' => env('PUSHER_KEY'),
-            'secret' => env('PUSHER_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
-            'options' => [
-                'host' => 'localhost',
-                'port' => 6001,
             ],
         ],
 

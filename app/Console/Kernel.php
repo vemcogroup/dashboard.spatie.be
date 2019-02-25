@@ -3,34 +3,35 @@
 namespace App\Console;
 
 use App\Console\Commands\Feed\ReadFeeds;
-use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\Stats\UpdateStats;
-use App\Console\Components\Packagist\FetchTotals;
+use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\Gitlab\FetchGitlabMilestones;
 use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
+use App\Console\Components\Dashboard\SendHeartbeatCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Console\Components\InternetConnection\SendHeartbeat;
+use App\Console\Components\Statistics\FetchPackagistTotalsCommand;
 
 class Kernel extends ConsoleKernel
 {
-    protected function schedule(Schedule $schedule): void
+    public function commands()
     {
-        $schedule->command(SendHeartbeat::class)->everyMinute();
-        $schedule->command(UpdateStats::class)->everyFiveMinutes();
-        $schedule->command(FetchGitlabTasksByLabel::class)->everyFiveMinutes();
-        $schedule->command(ReadFeeds::class)->everyFiveMinutes();
-        $schedule->command(FetchGitlabMilestones::class)->everyFiveMinutes();
-        $schedule->command(FetchTotals::class)->everyFiveMinutes();
+        $commandDirectries = glob(app_path('Console/Components/*'), GLOB_ONLYDIR);
+        $commandDirectries[] = app_path('Console');
+
+        collect($commandDirectries)->each(function (string $commandDirectory) {
+            $this->load($commandDirectory);
+        });
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
+    protected function schedule(Schedule $schedule)
     {
-        $this->load(__DIR__ . '/Components');
-        $this->load(__DIR__ . '/Commands');
+        $schedule->command(SendHeartbeatCommand::class)->everyMinute();
+        //$schedule->command(DetermineAppearanceCommand::class)->everyMinute();
+        $schedule->command(FetchPackagistTotalsCommand::class)->everyFiveMinutes();
+        $schedule->command(FetchGitlabTasksByLabel::class)->everyFiveMinutes();
+        $schedule->command(FetchGitlabMilestones::class)->everyFiveMinutes();
+        $schedule->command(UpdateStats::class)->everyFiveMinutes();
+        $schedule->command(ReadFeeds::class)->everyFiveMinutes();
+        //$schedule->command('websockets:clean')->daily();
     }
 }

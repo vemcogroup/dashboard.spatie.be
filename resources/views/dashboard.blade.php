@@ -2,18 +2,25 @@
 
 @section('content')
 
-@javascript(compact('socketAppKey', 'socketCluster', 'socketHost', 'socketPort', 'socketSecurePort', 'socketDisableStats', 'socketEncrypted'))
+    @javascript(
+        compact(
+            'socketAppKey', 'socketCluster', 'socketHost', 'socketPort', 'socketSecurePort',
+            'socketDisableStats', 'socketEncrypted',
+            'environment', 'openWeatherMapKey'
+    ))
 
-<dashboard id="dashboard" columns="6" rows="8">
-    <twitter :initial-tweets="{{ json_encode($initialTweets) }}" position="a1:a7"></twitter>
-    <gitlab-labels label="To Do" :show-time="false" :show-assignees="true" order-by="weight" position="b1:c7"></gitlab-labels>
-    <gitlab-labels label="Implementing solution" :show-time="true" order-by="weight" :show-assignees="true" position="d1:e5"></gitlab-labels>
-    <gitlab-milestones position="d6:e7"></gitlab-milestones>
-    <time-weather position="f1:f3" date-format="ddd DD/MM" time-zone="Europe/Copenhagen" weather-city="Fredericia"></time-weather>
-    <stats position="f4:f6"></stats>
-    <packagist position="f7:f8"></packagist>
-    <rss-feed position="a8:e8"></rss-feed>
-    <internet-connection></internet-connection>
-</dashboard>
+<div id="dashboard">
+    <dashboard class="font-sans">
+        <twitter position="a1:a21" :initial-tweets="{{ json_encode($initialTweets) }}"></twitter>
+        <time-weather position="f1:f6" date-format="ddd DD/MM" time-zone="Europe/Copenhagen" weather-city="Fredericia"></time-weather>
+        <internet-connection position="f1:f6"></internet-connection>
+        <gitlab-labels position="b1:c21" label="To Do" :show-time="false" :show-assignees="true" order-by="weight"></gitlab-labels>
+        <gitlab-labels position="d1:e15" label="Implementing solution" :show-time="true" order-by="weight" :show-assignees="true"></gitlab-labels>
+        <gitlab-milestones position="d16:e21"></gitlab-milestones>
+        <stats position="f7:f16"></stats>
+        <statistics position="f17:f24"></statistics>
+        <rss-feed position="a22:e24"></rss-feed>
+    </dashboard>
+</div>
 
 @endsection

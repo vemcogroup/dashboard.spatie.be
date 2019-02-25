@@ -49,6 +49,7 @@ class UpdateStats extends Command
                 new DynatraceProblems(),
                 new BugsnagProblems(),
                 new Alarms(),
+                new GitlabIssues(),
                 new Metric(env('CACHETHQ_METRIC')),
             ],
         ];
