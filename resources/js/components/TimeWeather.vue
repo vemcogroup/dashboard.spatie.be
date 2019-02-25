@@ -7,7 +7,7 @@
             <div class="markup">
                 <h1>{{ date }}</h1>
             </div>
-            <div class="gold align-self-center font-bold text-4xl tracking-wide leading-none">
+            <div class="gold align-self-center text-4xl tracking-wide leading-none">
                 {{ time }}
             </div>
             <div class="uppercase">
@@ -21,16 +21,13 @@
                 <div class="align-self-center text-center text-xs">{{ weatherCity }}</div>
             </div>
         </div>
-        <div
-            class="absolute pin-b pin-l w-full grid items-end"
+        <div class="absolute pin-b pin-l w-full grid items-end"
             style="
                 height: calc(1.25 * var(--tile-padding));
                 grid-gap: 1px;
                 grid-template-columns: repeat(12, 1fr);
-                opacity: .15"
-        >
-            <div
-                v-for="rainForecast in rainForecasts"
+                opacity: .15">
+            <div v-for="rainForecast in rainForecasts"
                 class="rounded-sm bg-accent"
                 :style="`height:${rainForecast.rain * 100}%`"
             />

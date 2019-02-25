@@ -14,13 +14,10 @@
                                 {{ task.weight }}
                             </div>
                             <div class="badge" v-if="task.milestone && task.milestoneColor" :style="'background-color: ' + task.milestoneColor">
-                                {{ task.milestone }}
+                                MS
                             </div>
                             <div class="badge" v-else-if="task.milestone">
                                 {{ task.milestone }}
-                            </div>
-                            <div class="weight" v-if="task.dueDate">
-                                {{ date(task.dueDate) }}
                             </div>
                             <div v-for="(type, index) in task.types" :key="index" class="badge bg-blue-dark">
                                 {{ type }}
