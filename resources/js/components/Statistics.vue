@@ -5,7 +5,7 @@
             <ul class="align-self-center">
                 <li class="flex justify-between border-b-2 py-1 border-grey-darker">
                     <span v-html="emoji('✨')"></span>
-                    <span class="gold">{{ formatNumber(githubStars) }}</span>
+                    <span class="gold">{{ formatNumber(packagistStars) }}</span>
                 </li>
                 <li class="flex justify-between border-b-2 py-1 border-grey-darker">
                     <span>24 hours</span>
@@ -42,11 +42,11 @@ export default {
 
     data() {
         return {
-            githubStars: 0,
             githubIssues: 0,
             githubPullRequests: 0,
             githubContributors: 0,
 
+            packagistStars: 0,
             packagistTotal: 0,
             packagistDaily: 0,
             packagistMonthly: 0,
@@ -60,13 +60,13 @@ export default {
         getEventHandlers() {
             return {
                 'Statistics.GitHubTotalsFetched': response => {
-                    this.githubStars = response.stars;
                     this.githubIssues = response.issues;
                     this.githubPullRequests = response.pullRequests;
                     this.githubContributors = response.contributors;
                 },
 
                 'Statistics.PackagistTotalsFetched': response => {
+                    this.packagistStars = response.stars;
                     this.packagistTotal = response.total;
                     this.packagistDaily = response.daily;
                     this.packagistMonthly = response.monthly;

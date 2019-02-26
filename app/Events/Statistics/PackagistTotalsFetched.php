@@ -7,6 +7,9 @@ use App\Events\DashboardEvent;
 class PackagistTotalsFetched extends DashboardEvent
 {
     /** @var int */
+    public $stars;
+
+    /** @var int */
     public $daily;
 
     /** @var int */
@@ -17,6 +20,8 @@ class PackagistTotalsFetched extends DashboardEvent
 
     public function __construct(array $totals)
     {
+        $this->stars = $totals['stars'];
+
         $this->daily = $totals['daily'];
 
         $this->monthly = $totals['monthly'];
