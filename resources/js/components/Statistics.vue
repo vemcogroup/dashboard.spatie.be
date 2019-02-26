@@ -4,6 +4,10 @@
             <h1>Packagist</h1>
             <ul class="align-self-center">
                 <li class="flex justify-between border-b-2 py-1 border-grey-darker">
+                    <span v-html="emoji('✨')"></span>
+                    <span class="gold">{{ formatNumber(githubStars) }}</span>
+                </li>
+                <li class="flex justify-between border-b-2 py-1 border-grey-darker">
                     <span>24 hours</span>
                     <span class="gold">{{ formatNumber(packagistDaily) }}</span>
                 </li>
