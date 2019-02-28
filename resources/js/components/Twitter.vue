@@ -67,7 +67,7 @@ export default {
             displayingTopTweetSince: moment(),
             tweets: [],
             waitingLine: [],
-            ownScreenName: '@spatie_be',
+            ownScreenName: '@vemcount',
         };
     },
 
@@ -81,7 +81,9 @@ export default {
         getEventHandlers() {
             return {
                 'Twitter.Mentioned': response => {
-                    this.addToWaitingLine(new Tweet(response.tweetProperties));
+                    if (!response.tweetProperties['delete']) {
+                        this.addToWaitingLine(new Tweet(response.tweetProperties));
+                    }
                 },
             };
         },
