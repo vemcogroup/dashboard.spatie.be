@@ -78,7 +78,6 @@ export default {
                 },
             };
         },
-/**/
         getSaveStateConfig() {
             return {
                 cacheKey: `gitlab-labels-${this.label}`,
@@ -98,7 +97,7 @@ export default {
                     if(a.weight > b.weight) return -1;
                     if(a.weight < b.weight) return 1;
                     if(a.id < b.id) return -1;
-                    if(a.id > b./**/id) return 1;
+                    if(a.id > b.id) return 1;
 
                     return 0;
                 });

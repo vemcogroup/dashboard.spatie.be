@@ -3,12 +3,6 @@
 namespace App\Console;
 
 use Illuminate\Console\Command;
-use App\Console\Commands\Feed\ReadFeeds;
-use App\Console\Commands\Stats\UpdateStats;
-use App\Console\Commands\Gitlab\FetchGitlabMilestones;
-use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
-use App\Console\Components\Dashboard\SendHeartbeatCommand;
-use App\Console\Components\Statistics\FetchPackagistTotalsCommand;
 
 class UpdateDashboardCommand extends Command
 {
@@ -18,11 +12,14 @@ class UpdateDashboardCommand extends Command
 
     public function handle(): void
     {
-        $this->call(SendHeartbeatCommand::class);
-        $this->call(UpdateStats::class);
-        $this->call(FetchGitlabTasksByLabel::class);
-        $this->call(ReadFeeds::class);
-        $this->call(FetchGitlabMilestones::class);
-        $this->call(FetchPackagistTotalsCommand::class);
+        $this->call('dashboard:send-heartbeat');
+        $this->call('dashboard:fetch-packagist-totals');
+        $this->call('dashboard:fetch-gitlab-tasks-by-label');
+        $this->call('dashboard:fetch-gitlab-milestones');
+        $this->call('dashboard:update-stats');
+        $this->call('dashboard:read-feeds');
+        $this->call('dashboard:fetch-zendesk-tickets');
+        $this->call('dashboard:sensors-offline');
+        $this->call('dashboard:get-services');
     }
 }

@@ -3,7 +3,10 @@
 namespace App\Console;
 
 use App\Console\Commands\Feed\ReadFeeds;
+use App\Console\Commands\Services\GetServices;
+use App\Console\Commands\Stats\SensorsOffline;
 use App\Console\Commands\Stats\UpdateStats;
+use App\Console\Commands\Zendesk\FetchZendeskTickets;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\Gitlab\FetchGitlabMilestones;
 use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
@@ -15,12 +18,19 @@ class Kernel extends ConsoleKernel
 {
     public function commands()
     {
-        $commandDirectries = glob(app_path('Console/Components/*'), GLOB_ONLYDIR);
+        $commandDirectries = glob(app_path('Console/*'), GLOB_ONLYDIR);
         $commandDirectries[] = app_path('Console');
 
         collect($commandDirectries)->each(function (string $commandDirectory) {
             $this->load($commandDirectory);
         });
+
+        /*$commandDirectries = glob(app_path('Console/Commands/*'), GLOB_ONLYDIR);
+        $commandDirectries[] = app_path('Console');
+
+        collect($commandDirectries)->each(function (string $commandDirectory) {
+            $this->load($commandDirectory);
+        });*/
     }
 
     protected function schedule(Schedule $schedule)
@@ -32,6 +42,9 @@ class Kernel extends ConsoleKernel
         $schedule->command(FetchGitlabMilestones::class)->everyFiveMinutes();
         $schedule->command(UpdateStats::class)->everyFiveMinutes();
         $schedule->command(ReadFeeds::class)->everyFiveMinutes();
+        $schedule->command(FetchZendeskTickets::class)->everyFiveMinutes();
+        $schedule->command(SensorsOffline::class)->everyFiveMinutes();
+        $schedule->command(GetServices::class)->everyFiveMinutes();
         //$schedule->command('websockets:clean')->daily();
     }
 }
