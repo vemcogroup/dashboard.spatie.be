@@ -17,8 +17,8 @@
         <gitlab-labels position="b1:c21" label="To Do" :show-time="false" :show-assignees="true" order-by="weight"></gitlab-labels>
         <gitlab-labels position="d1:e15" label="Implementing solution" :show-time="true" order-by="weight" :show-assignees="true"></gitlab-labels>
         <gitlab-milestones position="d16:e21"></gitlab-milestones>
-        <stats position="f7:f16"></stats>
-        <statistics position="f17:f24"></statistics>
+        <stats position="f7:f17"></stats>
+        <statistics position="f18:f24"></statistics>
         <rss-feed position="a22:e24"></rss-feed>
     </dashboard>
 </div>
