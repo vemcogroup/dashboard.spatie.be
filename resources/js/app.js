@@ -13,6 +13,7 @@ import InternetConnection from './components/InternetConnection';
 import Stats from './components/Stats';
 import RssFeed from './components/RssFeed';
 import Services from './components/Services';
+import DevServices from './components/DevServices';
 import GitlabTotals from './components/Gitlab/Totals';
 import GitlabLabels from './components/Gitlab/ByLabel';
 import SensorsOffline from './components/SensorsOffline';
@@ -37,6 +38,7 @@ new Vue({
         GitlabTotals,
 
         Services,
+        DevServices,
         SensorsOffline,
 
         HelpdeskTickets,

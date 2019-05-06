@@ -2,15 +2,14 @@
 
 namespace App\Console\Commands\Stats;
 
-use App\ApiIntegration\Horizon\Workers;
 use Illuminate\Console\Command;
 use App\ApiIntegration\AWS\Alarms;
 use App\Events\Stats\StatsFetched;
+use App\ApiIntegration\Horizon\Workers;
 use App\ApiIntegration\CachetHQ\Metric;
 use App\ApiIntegration\Horizon\Processes;
 use App\ApiIntegration\Horizon\JobsPrHour;
 use App\ApiIntegration\Gitlab\GitlabIssues;
-use App\ApiIntegration\Horizon\JobsPrMinute;
 use App\ApiIntegration\Bugsnag\BugsnagProblems;
 use App\ApiIntegration\Gitlab\GitlabMergeRequests;
 use App\ApiIntegration\Dynatrace\DynatraceProblems;

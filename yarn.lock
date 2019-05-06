@@ -5609,6 +5609,13 @@ postcss-filter-plugins@^2.0.0:
   dependencies:
     postcss "^5.0.4"
 
+postcss-font-awesome@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/postcss-font-awesome/-/postcss-font-awesome-0.4.0.tgz#083a1f6501a8567b803c94f32fb5e88bbedbbfdc"
+  integrity sha512-bj7TXcL1Uj6p1kkc3tQVWuAL+fk4rYdbtA8Nle9xJtOzsavtDZCnn/Gyp76YTzY7dCq6bjSBr+1PetMtHvJS2g==
+  dependencies:
+    postcss "^5.0.14"
+
 postcss-functions@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/postcss-functions/-/postcss-functions-3.0.0.tgz#0e94d01444700a481de20de4d55fb2640564250e"

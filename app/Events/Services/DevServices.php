@@ -4,7 +4,7 @@ namespace App\Events\Services;
 
 use App\Events\DashboardEvent;
 
-class UpdateServices extends DashboardEvent
+class DevServices extends DashboardEvent
 {
     /** @var array */
     public $services;

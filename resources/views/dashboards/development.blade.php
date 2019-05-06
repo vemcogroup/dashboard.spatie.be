@@ -12,6 +12,7 @@
 <div id="dashboard">
     <dashboard class="font-sans">
         <twitter position="a1:a21" :initial-tweets="{{ json_encode($initialTweets) }}"></twitter>
+        <dev-services position="a1:a21"></dev-services>
         <time-weather position="f1:f6" date-format="ddd DD/MM" time-zone="Europe/Copenhagen" weather-city="Fredericia"></time-weather>
         <internet-connection position="f1:f6"></internet-connection>
         <gitlab-labels position="b1:c21" label="To Do" :show-time="false" :show-assignees="true" order-by="weight"></gitlab-labels>

@@ -48,14 +48,14 @@ export default {
     methods: {
         getEventHandlers() {
             return {
-                'Services.UpdateServices': response => {
+                'Services.DeviceServices': response => {
                     this.services = response.services ? response.services : [];
                 },
             };
         },
         getSaveStateConfig() {
             return {
-                cacheKey: `services`,
+                cacheKey: `services-device-services`,
             };
         },
         restart(service) {
