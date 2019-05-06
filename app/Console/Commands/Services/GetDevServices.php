@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\Services;
 
-use App\ApiIntegration\Web\Ftp;
 use App\ApiIntegration\Web\Up;
+use App\ApiIntegration\Web\Ftp;
 use Illuminate\Console\Command;
 use App\Events\Services\DevServices;
 use App\ApiIntegration\Horizon\Processes;
@@ -18,7 +18,7 @@ class GetDevServices extends Command
     public function handle(): void
     {
         $this->services = [
-            /*[
+            [
                 'label' => 'FTP',
                 'status' => (new Ftp('ftp'))->getValue(),
             ], [
@@ -39,7 +39,7 @@ class GetDevServices extends Command
             ], [
                 'label' => 'Licenses',
                 'status' => (new Up('https://license.vemcount.com'))->getValue(),
-            ], */[
+            ], [
                 'label' => 'Cachet',
                 'status' => (new Up('https://status.vemcogroup.com'))->getValue(),
             ]

@@ -20,6 +20,7 @@ class UpdateDashboardCommand extends Command
         $this->call('dashboard:read-feeds');
         $this->call('dashboard:fetch-zendesk-tickets');
         $this->call('dashboard:sensors-offline');
-        $this->call('dashboard:get-services');
+        $this->call('dashboard:get-device-services');
+        $this->call('dashboard:get-dev-services');
     }
 }
