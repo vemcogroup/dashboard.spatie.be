@@ -3,11 +3,12 @@
 namespace App\Console;
 
 use App\Console\Commands\Feed\ReadFeeds;
-use App\Console\Commands\Services\GetServices;
-use App\Console\Commands\Stats\SensorsOffline;
-use App\Console\Commands\Stats\UpdateStats;
-use App\Console\Commands\Zendesk\FetchZendeskTickets;
 use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\Stats\UpdateStats;
+use App\Console\Commands\Stats\SensorsOffline;
+use App\Console\Commands\Services\GetDevServices;
+use App\Console\Commands\Services\GetDeviceServices;
+use App\Console\Commands\Zendesk\FetchZendeskTickets;
 use App\Console\Commands\Gitlab\FetchGitlabMilestones;
 use App\Console\Commands\Gitlab\FetchGitlabTasksByLabel;
 use App\Console\Components\Dashboard\SendHeartbeatCommand;
@@ -44,7 +45,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(ReadFeeds::class)->everyFiveMinutes();
         $schedule->command(FetchZendeskTickets::class)->everyFiveMinutes();
         $schedule->command(SensorsOffline::class)->everyFiveMinutes();
-        $schedule->command(GetServices::class)->everyFiveMinutes();
+        $schedule->command(GetDeviceServices::class)->everyFiveMinutes();
+        $schedule->command(GetDevServices::class)->everyFiveMinutes();
         //$schedule->command('websockets:clean')->daily();
     }
 }
