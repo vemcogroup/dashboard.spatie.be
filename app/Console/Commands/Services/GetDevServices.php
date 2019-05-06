@@ -41,7 +41,7 @@ class GetDevServices extends Command
                 'status' => (new Up('https://license.vemcount.com'))->getValue(),
             ], [
                 'label' => 'Cachet',
-                'status' => (new Up('https://status.vemcogroup.com'))->getValue(),
+                'status' => (new Up('https://status.vemcogroup.com', false))->getValue(),
             ]
         ];
 

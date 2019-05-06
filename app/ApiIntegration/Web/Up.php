@@ -11,17 +11,19 @@ class Up extends ApiIntegration
     protected $url;
     protected $httpClient;
     protected $expectedCode;
+    protected $allowRedirects;
 
-    public function __construct($url = '', $expectedCode = 200)
+    public function __construct($url = '', $allowRedirects = true, $expectedCode = 200)
     {
         $this->url = $url;
         $this->expectedCode = $expectedCode;
+        $this->allowRedirects = $allowRedirects;
         $this->httpClient = new Client();
     }
 
     public function getStatus()
     {
-        return  $this->httpClient->get($this->url, ['allow_redirects' => false])->getStatusCode();
+        return  $this->httpClient->get($this->url, ['allow_redirects' => $this->allowRedirects])->getStatusCode();
     }
 
     public function getValue()
