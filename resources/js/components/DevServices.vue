@@ -6,7 +6,7 @@
             <table class="w-full text-lg">
                 <tr class="border-b-2 py-3 border-grey-darker" v-for="service in down">
                     <td class="text-red py-2">{{ service.label }}</td>
-                    <td class="text-right gold"><i class="service-down"></i></td>
+                    <td class="text-right gold"><i class="service-down">{{ service.value }}</i></td>
                 </tr>
             </table>
 

@@ -49,9 +49,7 @@ class UpdateStats extends Command
             'showTitle' => true,
             'showEmpty' => false,
             'items' => [
-                new DynatraceProblems(),
                 new BugsnagProblems(),
-                new Alarms(),
                 new Processes(),
                 new Workers(),
                 new JobsPrHour(),

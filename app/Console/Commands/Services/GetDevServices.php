@@ -5,8 +5,10 @@ namespace App\Console\Commands\Services;
 use App\ApiIntegration\Web\Up;
 use App\ApiIntegration\Web\Ftp;
 use Illuminate\Console\Command;
+use App\ApiIntegration\AWS\Alarms;
 use App\Events\Services\DevServices;
 use App\ApiIntegration\Horizon\Processes;
+use App\ApiIntegration\Dynatrace\DynatraceProblems;
 
 class GetDevServices extends Command
 {
@@ -17,31 +19,51 @@ class GetDevServices extends Command
 
     public function handle(): void
     {
+        $aws = (new Alarms)->getValue();
+        $horizon = (new Processes)->getValue();
+        $dynatrace = (new DynatraceProblems)->getValue();
+
         $this->services = [
             [
                 'label' => 'FTP',
                 'status' => (new Ftp('ftp'))->getValue(),
+                'value' => 'Offline',
             ], [
                 'label' => 'SFTP',
                 'status' => (new Ftp('sftp'))->getValue(),
+                'value' => 'Offline',
             ], [
                 'label' => 'Horizon',
-                'status' => (new Processes())->getValue() > 10,
+                'status' => $horizon > 10,
+                'value' => $horizon,
+            ], [
+                'label' => 'Dynatrace',
+                'status' => $dynatrace <= 0,
+                'value' => $dynatrace
+            ], [
+                'label' => 'AWS',
+                'status' => $aws <= 0,
+                'value' => $aws,
             ], [
                 'label' => 'Website',
                 'status' => (new Up('https://www.vemcount.com'))->getValue(),
+                'value' => 'Offline',
             ], [
                 'label' => 'App1',
                 'status' => (new Up('https://central-app1.vemcount.com'))->getValue(),
+                'value' => 'Offline',
             ], [
                 'label' => 'App2',
                 'status' => (new Up('https://central-app2.vemcount.com'))->getValue(),
+                'value' => 'Offline',
             ], [
                 'label' => 'Licenses',
                 'status' => (new Up('https://license.vemcount.com'))->getValue(),
+                'value' => 'Offline',
             ], [
                 'label' => 'Cachet',
                 'status' => (new Up('https://status.vemcogroup.com', false))->getValue(),
+                'value' => 'Offline',
             ]
         ];
 
