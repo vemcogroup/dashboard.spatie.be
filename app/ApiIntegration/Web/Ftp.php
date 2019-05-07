@@ -19,7 +19,7 @@ class Ftp extends ApiIntegration
 
     public function testWriteDelete()
     {
-        Storage::disk($this->disk)->put('service-test-'.$this->timestamp.'txt', 'OK');
+        Storage::disk($this->disk)->put('service-test-'.$this->timestamp.'.txt', 'OK');
         Storage::disk($this->disk)->delete('service-test-'.$this->timestamp.'.txt');
     }
 
