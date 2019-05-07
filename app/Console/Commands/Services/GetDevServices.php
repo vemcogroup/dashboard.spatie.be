@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Services;
 
+use App\ApiIntegration\Web\Tcp;
 use App\ApiIntegration\Web\Up;
 use App\ApiIntegration\Web\Ftp;
 use Illuminate\Console\Command;
@@ -64,7 +65,19 @@ class GetDevServices extends Command
                 'label' => 'Cachet',
                 'status' => (new Up('https://status.vemcogroup.com', false))->getValue(),
                 'value' => 'Offline',
-            ]
+            ], [
+                'label' => 'Xovis',
+                'status' => (new Up('https://xovis.vemcount.com:3002'))->getValue(),
+                'value' => 'Offline',
+            ], [
+                'label' => 'Brickstream',
+                'status' => (new Tcp('brickstream.vemcount.com', 3000))->getValue(),
+                'value' => 'Offline',
+            ], [
+                'label' => 'Irisys',
+                'status' => (new Tcp('irisys.vemcount.com'))->getValue(),
+                'value' => 'Offline',
+            ],
         ];
 
         event(new DevServices($this->services));

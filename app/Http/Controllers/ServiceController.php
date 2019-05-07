@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\ApiIntegration\Web\Up;
+use App\ApiIntegration\Web\Tcp;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use Collective\Remote\RemoteFacade as SSH;
 use App\SystemServiceInteraction\Instruction;
 use App\SystemServiceInteraction\SystemCommand;
-use Collective\Remote\RemoteFacade as SSH;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class ServiceController
 {
@@ -25,7 +27,8 @@ class ServiceController
                     new SystemCommand('sudo systemctl restart ibex.service'),
                     new SystemCommand('sudo systemctl restart ibex-auth.service'),
                     new SystemCommand('sudo systemctl restart ibex-instance-manager.service'),
-                ]
+                ],
+                'status' => (new Up('https://xovis.vemcount.com:3002'))->getValue(),
             ],
             'Brickstream' => [
                 'name' => 'Brickstream',
@@ -35,13 +38,15 @@ class ServiceController
                     new SystemCommand('sudo systemctl restart bs_smartadapter.service'),
                     new SystemCommand('sudo systemctl restart bs_taskmgr.service'),
                     new SystemCommand('sudo systemctl restart tomcat.service'),
-                ]
+                ],
+                'status' => (new Tcp('brickstream.vemcount.com', 3000))->getValue(),
             ],
             'Irisys' => [
                 'name' => 'Irisys',
                 'commands' => [
                     new SystemCommand('sudo systemctl restart irisys.service'),
-                ]
+                ],
+                'status' => (new Tcp('irisys.vemcount.com'))->getValue(),
             ],
         ];
     }

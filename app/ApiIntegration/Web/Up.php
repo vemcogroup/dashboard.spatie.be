@@ -23,7 +23,7 @@ class Up extends ApiIntegration
 
     public function getStatus()
     {
-        return  $this->httpClient->get($this->url, ['allow_redirects' => $this->allowRedirects])->getStatusCode();
+        return  $this->httpClient->get($this->url, ['allow_redirects' => $this->allowRedirects, 'verify' => false])->getStatusCode();
     }
 
     public function getValue()

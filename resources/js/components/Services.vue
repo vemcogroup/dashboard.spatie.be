@@ -9,7 +9,7 @@
                     <th class="text-right w-24">Status</th>
                 </tr>
                 <tr class="border-b-2 py-3 border-grey-darker" v-for="service in services">
-                    <td class="py-2">{{ service.name }}</td>
+                    <td class="py-2" :class="statusClass(service)">{{ service.name }}</td>
                     <td class="py-2 text-right gold">
                         <button v-if="! loading" @click="restart(service)" class="text-xs p-2 bg-blue text-white rounded ml-2">Restart</button>
                         <span v-else> wait </span>
@@ -46,6 +46,9 @@ export default {
     },
 
     methods: {
+        statusClass(service) {
+            return [service.status ? 'text-green' : 'text-red']
+        },
         getEventHandlers() {
             return {
                 'Services.DeviceServices': response => {
