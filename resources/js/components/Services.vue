@@ -59,6 +59,7 @@ export default {
         getSaveStateConfig() {
             return {
                 cacheKey: `services-device-services`,
+                'ignoreProperties': ['loading'],
             };
         },
         restart(service) {
