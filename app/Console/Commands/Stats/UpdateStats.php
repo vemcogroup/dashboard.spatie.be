@@ -48,7 +48,7 @@ class UpdateStats extends Command
             'showEmpty' => false,
             'items' => [
                 new BugsnagProblems(),
-                new Processes(),
+                new Processes(true),
                 new JobsPrHour(),
                 //new GitlabIssues(),
                 new Metric(env('CACHETHQ_METRIC')),
