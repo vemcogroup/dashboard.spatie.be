@@ -2,16 +2,11 @@
     <tile :position="position">
         <div
             class="grid gap-padding h-full markup"
+            style="grid-template-columns: 100%"
             :style="tasks ? 'grid-template-rows: auto 1fr' : 'grid-template-rows: 1fr'"
         >
-            <div
-                class="grid gap-2 items-center w-full bg-tile z-10"
-                style="grid-template-columns: auto 1fr"
-            >
-                <div
-                    v-if="artwork != ''"
-                    class="overflow-hidden w-10 h-10 rounded border border-screen"
-                >
+            <div class="grid gap-2 items-center w-full bg-tile z-10" style="grid-template-columns: auto 1fr">
+                <div v-if="artwork != ''" class="overflow-hidden w-10 h-10 rounded border border-screen">
                     <component :is="trackUrl ? 'a' : 'span'" :href="trackUrl || ''" target="_blank">
                         <img :src="artwork" class="w-10 h-10" />
                     </component>
@@ -27,12 +22,8 @@
                 </div>
                 <div class="leading-tight min-w-0">
                     <h2 class="truncate capitalize">
-                        {{ name }}
-                        <span
-                            v-if="statusEmoji != ''"
-                            class="text-xl"
-                            v-html="emoji(statusEmoji)"
-                        />
+                        {{ displayName || name }}
+                        <span v-if="statusEmoji != ''" class="text-xl" v-html="emoji(statusEmoji)" />
                     </h2>
                     <component
                         v-if="currentTrack != ''"
@@ -45,7 +36,28 @@
                     </component>
                 </div>
             </div>
-            <div class="align-self-center" v-if="tasks" v-html="tasks"></div>
+            <div class="align-self-center" v-if="tasks.length">
+                <ul>
+                    <li v-for="task in largeTasks" :key="task.id">
+                        <div class="truncate">
+                            <p class="truncate">
+                                {{ task.project }}
+                            </p>
+                            <p v-if="task.name" class="flex-1 truncate text-xs text-dimmed">
+                                {{ upperFirst(task.name) }}
+                            </p>
+                        </div>
+                        <p class="ml-2 font-bold variant-tabular">{{ task.formatted_time }}</p>
+                    </li>
+                </ul>
+                <ul class="text-xs border-t-2 border-screen pt-1">
+                    <li v-for="task in smallTasks" :key="task.id">
+                        <p class="truncate" :data-id="task.id">
+                            {{ task.project }} <span v-if="task.name" class="text-dimmed">{{ lowerFirst(task.name) }}</span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </tile>
 </template>
@@ -57,6 +69,7 @@ import Avatar from './atoms/Avatar';
 import Tile from './atoms/Tile';
 import saveState from 'vue-save-state';
 import moment from 'moment';
+import { upperFirst, lowerFirst } from 'lodash';
 
 export default {
     components: {
@@ -66,19 +79,11 @@ export default {
 
     mixins: [echo, saveState],
 
-    props: ['name', 'avatar', 'position', 'birthday'],
-
-    computed: {
-        isBirthDay() {
-            let birthday = moment(this.birthday);
-
-            return birthday.format('MD') === moment().format('MD');
-        },
-    },
+    props: ['name', 'displayName', 'avatar', 'position', 'birthday'],
 
     data() {
         return {
-            tasks: '',
+            tasks: [],
             currentTrack: '',
             artwork: '',
             trackUrl: '',
@@ -86,13 +91,41 @@ export default {
         };
     },
 
+    computed: {
+        isBirthDay() {
+            let birthday = moment(this.birthday);
+
+            return birthday.format('MD') === moment().format('MD');
+        },
+
+        largeTasks() {
+            return this.tasks.filter(task => task.hours >= 8);
+        },
+
+        smallTasks() {
+            return this.tasks.filter(task => {
+                if (task.hours >= 8) {
+                    return false;
+                }
+
+                if (task.project === 'Open source / Eigen werk' && task.name === '') {
+                    return false;
+                }
+
+                return true;
+            });
+        },
+    },
+
     methods: {
+        lowerFirst,
+        upperFirst,
         emoji,
 
         getEventHandlers() {
             return {
                 'TeamMember.TasksFetched': response => {
-                    this.tasks = response.tasks[this.name];
+                    this.tasks = response.tasks[this.name] || [];
                 },
 
                 'TeamMember.UpdateStatus': response => {

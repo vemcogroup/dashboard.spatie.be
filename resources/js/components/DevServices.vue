@@ -3,18 +3,16 @@
         <section v-if="down.length">
             <h1 class="text-red">Services ({{ count }})</h1>
 
-            <table class="w-full text-lg">
-                <tr class="border-b-2 py-3 border-grey-darker" v-for="service in down">
-                    <td class="text-red py-2">{{ service.label }}</td>
-                    <td class="text-right gold"><i class="service-down">{{ service.value }}</i></td>
-                </tr>
-            </table>
-
-            <table class="w-full text-lg">
-                <tr class="border-b-2 py-3 border-grey-darker" v-for="service in up">
-                    <td class="text-green py-2">{{ service.label }}</td>
-                    <td class="text-right gold"><i class="service-up"></i></td>
-                </tr>
+            <table class="w-full text-lg border-b-2 border-grey-darker">
+                <template v-for="service in down">
+                    <tr class="border-t-2 py-3 border-grey-darker">
+                        <td class="text-red py-2">{{ service.label }}</td>
+                        <td class="text-right gold"><i class="service-down">{{ service.value }}</i></td>
+                    </tr>
+                    <tr v-if="service.description">
+                        <td colspan="2" class="gold text-xs pb-2">{{ service.description }}</td>
+                    </tr>
+                </template>
             </table>
 
         </section>

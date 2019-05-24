@@ -12,7 +12,7 @@ class ListenForMentionsCommand extends Command
 
     protected $description = 'Listen for mentions on Twitter';
 
-    public function handle()
+    public function handle(): void
     {
         $this->info('Listening for mentions...');
 

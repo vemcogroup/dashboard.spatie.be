@@ -1,20 +1,19 @@
 <?php
 
 return [
+    'buienradar' => [
+        'latitude' => env('BUIENRADAR_LATITUDE'),
+        'longitude' => env('BUIENRADAR_LONGITUDE'),
+    ],
 
-    'pusher' => [
-        'key' => env('PUSHER_APP_KEY', ''),
-        'cluster' => env('PUSHER_APP_CLUSTER', ''),
-        'host' => env('PUSHER_APP_HOST', ''),
-        'port' => env('PUSHER_APP_PORT', 80),
-        'secure_port' => env('PUSHER_APP_SECURE_PORT', 443),
-        'disable_stats' => env('PUSHER_APP_DISABLE_STATS', false),
-        'encrypted' => env('PUSHER_APP_ENCRYPTED', false),
+    'forecast' => [
+        'account_id' => env('FORECAST_ACCOUNT_ID'),
+        'token' => env('FORECAST_TOKEN'),
+        'people' => env('FORECAST_PEOPLE'),
     ],
 
     'github' => [
         'token' => env('GITHUB_TOKEN'),
-        'files' => env('GITHUB_FILES'),
         'hook_secret' => env('GITHUB_HOOK_SECRET'),
         'username' => env('GITHUB_USERNAME'),
     ],
@@ -24,31 +23,12 @@ return [
         'users' => explode(',', env('LAST_FM_USERS')),
     ],
 
-    'pusher' => [
-        'key' => env('PUSHER_APP_KEY', ''),
-        'cluster' => env('PUSHER_APP_CLUSTER', ''),
-        'host' => env('PUSHER_APP_HOST', ''),
-        'port' => env('PUSHER_APP_PORT', 80),
-        'secure_port' => env('PUSHER_APP_SECURE_PORT', 443),
-        'disable_stats' => env('PUSHER_APP_DISABLE_STATS', false),
-        'encrypted' => env('PUSHER_APP_ENCRYPTED', false),
+    'open_weather_map' => [
+        'key' => env('OPEN_WEATHER_MAP_KEY'),
     ],
 
     'packagist' => [
         'vendor' => env('PACKAGIST_VENDOR'),
-    ],
-
-    'velo' => [
-        'stations' => explode(',', env('VELO_STATIONS')),
-    ],
-
-    'buienradar' => [
-        'latitude' => env('BUIENRADAR_LATITUDE'),
-        'longitude' => env('BUIENRADAR_LONGITUDE'),
-    ],
-
-    'open_weather_map' => [
-        'key' => env('OPEN_WEATHER_MAP_KEY'),
     ],
 
     'slack' => [
@@ -71,5 +51,19 @@ return [
             'destination' => 'Overpelt',
             'label' => 'Overpelt',
         ],
+    ],
+
+    'velo' => [
+        'stations' => explode(',', env('VELO_STATIONS')),
+    ],
+
+    'pusher' => [
+        'key' => env('PUSHER_APP_KEY', ''),
+        'cluster' => env('PUSHER_APP_CLUSTER', ''),
+        'host' => env('PUSHER_APP_HOST', ''),
+        'port' => env('PUSHER_APP_PORT', 80),
+        'secure_port' => env('PUSHER_APP_SECURE_PORT', 443),
+        'disable_stats' => env('PUSHER_APP_DISABLE_STATS', false),
+        'encrypted' => env('PUSHER_APP_ENCRYPTED', false),
     ],
 ];

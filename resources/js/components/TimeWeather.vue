@@ -1,33 +1,28 @@
 <template>
     <tile :position="position" no-fade>
-        <div
-            class="grid gap-2 justify-items-center h-full"
-            style="grid-template-rows: auto 1fr auto;"
-        >
+        <div class="grid gap-2 justify-items-center h-full" style="grid-template-rows: auto 1fr auto;">
             <div class="markup">
                 <h1>{{ date }}</h1>
             </div>
-            <div class="gold align-self-center text-4xl tracking-wide leading-none">
-                {{ time }}
-            </div>
+            <div class="gold align-self-center text-4xl tracking-wide leading-none">{{ time }}</div>
             <div class="uppercase">
-                <div
-                    class="grid gap-2 items-center"
-                    style="grid-template-columns: repeat(3, auto);"
-                >
+                <div class="grid gap-2 items-center" style="grid-template-columns: repeat(3, auto);">
                     <span>{{ weather.temperature }}°</span>
                     <span v-for="icon in weather.icons" class="text-2xl" v-html="icon"></span>
                 </div>
                 <div class="align-self-center text-center text-xs">{{ weatherCity }}</div>
             </div>
         </div>
-        <div class="absolute pin-b pin-l w-full grid items-end"
+        <div
+            class="absolute pin-b pin-l w-full grid items-end"
             style="
                 height: calc(1.25 * var(--tile-padding));
                 grid-gap: 1px;
                 grid-template-columns: repeat(12, 1fr);
-                opacity: .15">
-            <div v-for="rainForecast in rainForecasts"
+                opacity: .15"
+        >
+            <div
+                v-for="rainForecast in rainForecasts"
                 class="rounded-sm bg-accent"
                 :style="`height:${rainForecast.rain * 100}%`"
             />
@@ -79,7 +74,7 @@ export default {
                 temperature: '',
                 icons: [],
             },
-            rainForecasts: []
+            rainForecasts: [],
         };
     },
 

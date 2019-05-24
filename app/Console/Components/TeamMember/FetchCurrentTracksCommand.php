@@ -16,12 +16,13 @@ class FetchCurrentTracksCommand extends Command
     protected $lastFmUsers = [
         'murze' => 'freek',
         'willemvb' => 'willem',
-        'sebdedeyne' => 'seb',
+        'sebdedeyne' => 'sebastian',
         'ruben-va' => 'ruben',
         'AlexVanderbist' => 'alex',
         'wouterbrouwers' => 'wouter',
         'brendt_gd' => 'brent',
         'AdriaanMrn' => 'adriaan',
+        'riasvdv' => 'rias',
     ];
 
     public function handle()

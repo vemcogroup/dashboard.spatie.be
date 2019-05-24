@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\Feed\ReadFeeds;
+use App\Console\Components\Statistics\FetchGitHubTotalsCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\Stats\UpdateStats;
 use App\Console\Commands\Stats\SensorsOffline;
@@ -17,27 +18,11 @@ use App\Console\Components\Statistics\FetchPackagistTotalsCommand;
 
 class Kernel extends ConsoleKernel
 {
-    public function commands()
-    {
-        $commandDirectries = glob(app_path('Console/*'), GLOB_ONLYDIR);
-        $commandDirectries[] = app_path('Console');
-
-        collect($commandDirectries)->each(function (string $commandDirectory) {
-            $this->load($commandDirectory);
-        });
-
-        /*$commandDirectries = glob(app_path('Console/Commands/*'), GLOB_ONLYDIR);
-        $commandDirectries[] = app_path('Console');
-
-        collect($commandDirectries)->each(function (string $commandDirectory) {
-            $this->load($commandDirectory);
-        });*/
-    }
-
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         $schedule->command(SendHeartbeatCommand::class)->everyMinute();
         //$schedule->command(DetermineAppearanceCommand::class)->everyMinute();
+        //$schedule->command(FetchGitHubTotalsCommand::class)->everyThirtyMinutes();
         $schedule->command(FetchPackagistTotalsCommand::class)->everyFiveMinutes();
         $schedule->command(FetchGitlabTasksByLabel::class)->everyFiveMinutes();
         $schedule->command(FetchGitlabMilestones::class)->everyFiveMinutes();
@@ -48,5 +33,15 @@ class Kernel extends ConsoleKernel
         $schedule->command(GetDeviceServices::class)->everyFiveMinutes();
         $schedule->command(GetDevServices::class)->everyFiveMinutes();
         //$schedule->command('websockets:clean')->daily();
+    }
+
+    public function commands(): void
+    {
+        $commandDirectries = glob(app_path('Console/*'), GLOB_ONLYDIR);
+        $commandDirectries[] = app_path('Console');
+
+        collect($commandDirectries)->each(function (string $commandDirectory) {
+            $this->load($commandDirectory);
+        });
     }
 }

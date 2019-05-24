@@ -4,25 +4,20 @@ namespace App\Console\Commands\Gitlab;
 
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
-use App\Events\Tasks\TasksFetched;
+use App\Events\TeamMember\TasksFetched;
 
 class FetchGitlabTasks extends Command
 {
     protected $signature = 'dashboard:fetch-gitlab-tasks';
-
     protected $description = 'Fetch team members tasks from Gitlab';
 
-    protected $url = null;
-
-    protected $httpClient = null;
-
-    protected $projectId = null;
-
+    protected $url;
+    protected $httpClient;
+    protected $projectId;
     protected $userIds = [];
-
     protected $issues = [];
 
-    public function handle()
+    public function handle(): void
     {
         $this->projectId = env('GITLAB_PROJECT');
 
