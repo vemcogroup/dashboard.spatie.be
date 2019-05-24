@@ -3,7 +3,6 @@
 namespace App\Console\Commands\Stats;
 
 use Illuminate\Console\Command;
-use App\ApiIntegration\AWS\Alarms;
 use App\Events\Stats\StatsFetched;
 use App\ApiIntegration\Horizon\Workers;
 use App\ApiIntegration\CachetHQ\Metric;
@@ -12,7 +11,6 @@ use App\ApiIntegration\Horizon\JobsPrHour;
 use App\ApiIntegration\Gitlab\GitlabIssues;
 use App\ApiIntegration\Bugsnag\BugsnagProblems;
 use App\ApiIntegration\Gitlab\GitlabMergeRequests;
-use App\ApiIntegration\Dynatrace\DynatraceProblems;
 use App\ApiIntegration\Gitlab\GitlabDeployOnStaging;
 use App\ApiIntegration\Gitlab\GitlabSolutionFinished;
 use App\ApiIntegration\Gitlab\GitlabApprovedForProduction;
@@ -51,9 +49,8 @@ class UpdateStats extends Command
             'items' => [
                 new BugsnagProblems(),
                 new Processes(),
-                new Workers(),
                 new JobsPrHour(),
-                new GitlabIssues(),
+                //new GitlabIssues(),
                 new Metric(env('CACHETHQ_METRIC')),
             ],
         ];

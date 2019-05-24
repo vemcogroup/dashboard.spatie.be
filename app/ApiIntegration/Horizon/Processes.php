@@ -6,8 +6,9 @@ class Processes extends Horizon
 {
     protected $name = 'Horizon';
 
-    public function getValue(): int
+    public function getValue(): string
     {
-        return $this->getContent()->processes;
+        $workers = (new Workers())->getValue();
+        return $workers . '/' . $this->getContent()->processes;
     }
 }

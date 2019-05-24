@@ -37,78 +37,77 @@ class GetDevServices extends Command
         }
 
         $this->services = array_merge($this->services, [
-                [
-                    'label' => 'FTP',
-                    'status' => (new Ftp('ftp'))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'SFTP',
-                    'status' => (new Ftp('sftp'))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'Horizon',
-                    'status' => $horizon > 10,
-                    'value' => $horizon,
-                ],
-                [
-                    'label' => 'Dynatrace',
-                    'status' => $dynatrace <= 0,
-                    'value' => $dynatrace
-                ],
-                [
-                    'label' => 'AWS',
-                    'status' => $aws <= 0,
-                    'value' => $aws,
-                ],
-                [
-                    'label' => 'NTP',
-                    'status' => (new Udp('ntp.vemcount.com', 123))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'Website',
-                    'status' => (new Up('https://www.vemcount.com'))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'App1',
-                    'status' => (new Up('https://central-app1.vemcount.com'))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'App2',
-                    'status' => (new Up('https://central-app2.vemcount.com'))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'Licenses',
-                    'status' => (new Up('https://license.vemcount.com'))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'Cachet',
-                    'status' => (new Up('https://status.vemcogroup.com', false))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'Xovis',
-                    'status' => (new Up('https://xovis.vemcount.com:3002'))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'Brickstream',
-                    'status' => (new Tcp('brickstream.vemcount.com', 3000))->getValue(),
-                    'value' => 'Offline',
-                ],
-                [
-                    'label' => 'Irisys',
-                    'status' => (new Tcp('irisys.vemcount.com'))->getValue(),
-                    'value' => 'Offline',
-                ],
-            ]
-        );
+            [
+                'label' => 'FTP',
+                'status' => (new Ftp('ftp'))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'SFTP',
+                'status' => (new Ftp('sftp'))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Horizon',
+                'status' => $horizon > 10,
+                'value' => $horizon,
+            ],
+            [
+                'label' => 'Dynatrace',
+                'status' => $dynatrace <= 0,
+                'value' => $dynatrace
+            ],
+            [
+                'label' => 'AWS',
+                'status' => $aws <= 0,
+                'value' => $aws,
+            ],
+            [
+                'label' => 'NTP',
+                'status' => (new Udp('ntp.vemcount.com', 123))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Website',
+                'status' => (new Up('https://www.vemcount.com'))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'App1',
+                'status' => (new Up('https://central-app1.vemcount.com'))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'App2',
+                'status' => (new Up('https://central-app2.vemcount.com'))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Licenses',
+                'status' => (new Up('https://license.vemcount.com'))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Cachet',
+                'status' => (new Up('https://status.vemcogroup.com', false))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Xovis',
+                'status' => (new Up('https://xovis.vemcount.com:3002'))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Brickstream',
+                'status' => (new Tcp('brickstream.vemcount.com', 3000))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Irisys',
+                'status' => (new Tcp('irisys.vemcount.com'))->getValue(),
+                'value' => 'Offline',
+            ],
+        ]);
 
         event(new DevServices($this->services));
     }
