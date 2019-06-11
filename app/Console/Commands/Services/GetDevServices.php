@@ -11,7 +11,6 @@ use App\ApiIntegration\AWS\Alarms;
 use App\Events\Services\DevServices;
 use App\ApiIntegration\Horizon\Processes;
 use App\ApiIntegration\Web\CertificateStatus;
-use App\ApiIntegration\Dynatrace\DynatraceProblems;
 
 class GetDevServices extends Command
 {
@@ -31,11 +30,6 @@ class GetDevServices extends Command
             $horizon = (new Processes)->getValue();
         } catch (\Exception $e) {
             $horizon = 0;
-        }
-        try {
-            $dynatrace = (new DynatraceProblems)->getValue();
-        } catch (\Exception $e) {
-            $dynatrace = 9999;
         }
         $certificateStatus = (new CertificateStatus())->getValue();
 
@@ -63,11 +57,6 @@ class GetDevServices extends Command
                 'label' => 'Horizon',
                 'status' => $horizon > 10,
                 'value' => $horizon,
-            ],
-            [
-                'label' => 'Dynatrace',
-                'status' => $dynatrace <= 0,
-                'value' => $dynatrace
             ],
             [
                 'label' => 'AWS',
