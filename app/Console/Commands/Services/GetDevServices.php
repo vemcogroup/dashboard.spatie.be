@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\Services;
 
-use App\ApiIntegration\Web\Udp;
 use App\ApiIntegration\Web\Up;
+use App\ApiIntegration\Web\Udp;
 use App\ApiIntegration\Web\Tcp;
 use App\ApiIntegration\Web\Ftp;
 use Illuminate\Console\Command;
@@ -22,9 +22,21 @@ class GetDevServices extends Command
 
     public function handle(): void
     {
-        $aws = (new Alarms)->getValue();
-        $horizon = (new Processes)->getValue();
-        $dynatrace = (new DynatraceProblems)->getValue();
+        try {
+            $aws = (new Alarms)->getValue();
+        } catch (\Exception $e) {
+            $aws = 9999;
+        }
+        try {
+            $horizon = (new Processes)->getValue();
+        } catch (\Exception $e) {
+            $horizon = 0;
+        }
+        try {
+            $dynatrace = (new DynatraceProblems)->getValue();
+        } catch (\Exception $e) {
+            $dynatrace = 9999;
+        }
         $certificateStatus = (new CertificateStatus())->getValue();
 
         foreach ($certificateStatus as $domain => $days) {
