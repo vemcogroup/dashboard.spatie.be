@@ -54,25 +54,28 @@ class FetchGitlabTasksByLabel extends Command
             $tags = [];
             $types = [];
             foreach ($gitlabIssue->labels as $label) {
-                if(starts_with($label,'#')) {
+                if (starts_with($label, '#')) {
                     $tags[] = $label;
                     continue;
                 }
-                if(starts_with($label,'/')) {
+                if (starts_with($label, '/')) {
                     $types[] = $label;
                     continue;
                 }
 
                 $dueDate = '';
-                if($gitlabIssue->due_date) {
+                if ($gitlabIssue->due_date) {
                     $dueDate = $gitlabIssue->due_date;
-                } else if($gitlabIssue->milestone && $gitlabIssue->milestone->due_date) {
+                } elseif ($gitlabIssue->milestone && $gitlabIssue->milestone->due_date) {
                     $dueDate = $gitlabIssue->milestone->due_date;
                 }
 
+                $tasks = $this->getTasks($gitlabIssue);
+                $title = $tasks['has_tasks'] ? $gitlabIssue->title . ' (' . $tasks['closed']. '/' . $tasks['total'] . ')' : $gitlabIssue->title;
+
                 $issues[] = [
                     'id' => $gitlabIssue->iid,
-                    'title' => $gitlabIssue->title,
+                    'title' => $title,
                     'teamMember' => collect($gitlabIssue->assignees)->map(function ($assignee) {
                         return [
                             'username' => $assignee->username,
@@ -99,10 +102,21 @@ class FetchGitlabTasksByLabel extends Command
 
     protected function findMilestoneColor($milestone)
     {
-        if($text = strstr($milestone->description,'#color:')) {
+        if ($text = strstr($milestone->description, '#color:')) {
             return '#' . substr($text, 7, 6);
         }
 
         return '#8B63B7';
+    }
+
+    protected function getTasks($issue): array
+    {
+        if (!$issue->has_tasks) {
+            return ['has_tasks' => false];
+        }
+
+        preg_match('/(.\d*) of (.\d*)/', $issue->task_status, $results);
+
+        return ['has_tasks' => true, 'total' => $results[2], 'closed' => $results[1]];
     }
 }
