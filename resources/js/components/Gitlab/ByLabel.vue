@@ -1,12 +1,12 @@
 <template>
     <tile :position="position" modifiers="overflow">
         <section>
-            <h1 :class="labelClasses">{{ title }} ({{ tasks.length }})</h1>
+            <h1 :class="labelClasses" v-html="title"></h1>
             <ul>
                 <li class="text-grey" v-if="! tasks.length">
                     No bugs reported
                 </li>
-                <li class="border-b-2 py-3 border-grey-darker" v-for="task in orderedTasks">
+                <li class="border-b-2 py-2 border-grey-darker" v-for="task in orderedTasks">
                     <div class="flex justify-between mb-1">
                         <span class="uppercase truncate">{{ task.title }}</span>
                         <div class="pl-2 gold">#{{ task.id }}</div>
@@ -46,6 +46,7 @@
                             {{ toHours(task.time.estimated) }}h
                         </span>
                     </div>
+                    <div v-if="task.hasTasks" class="h-1 mt-2 bg-green-dark" :style="'width: ' +  parseInt(task.tasksPercentage) +  '%'"></div>
                 </li>
             </ul>
         </section>
@@ -53,6 +54,7 @@
 </template>
 
 <script>
+import { emoji } from '../../helpers';
 import echo from '../../mixins/echo';
 import Tile from '../atoms/Tile';
 import saveState from 'vue-save-state';
@@ -95,13 +97,16 @@ export default {
     },
     computed: {
         title() {
-          return this.label
+          let label = this.label === 'Bug patrol' ? emoji('🐛') + ' '  + this.label : this.label;
+
+            return label + ' (' + this.tasks.length + ')'
         },
         labelClasses() {
           return [
               this.label === 'Bug patrol' && this.tasks.length ? 'text-red' : ''
           ]
         },
+
         orderedTasks() {
             if(this.orderBy === 'weight') {
                 return this.tasks.sort((a, b) => {

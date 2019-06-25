@@ -82,6 +82,8 @@ class FetchGitlabTasksByLabel extends Command
                     'label' => $label,
                     'milestoneColor' => $gitlabIssue->milestone ? $this->findMilestoneColor($gitlabIssue->milestone) : '',
                     'milestone' => $gitlabIssue->milestone ? $gitlabIssue->milestone->title : '',
+                    'hasTasks' => $tasks['has_tasks'],
+                    'tasksPercentage' => $tasks['has_tasks'] && $tasks['total'] ? ($tasks['closed'] / $tasks['total']) * 100 : 0,
                     'tags' => $tags,
                     'types' => $types,
                     'weight' => $gitlabIssue->weight ?? 0,
