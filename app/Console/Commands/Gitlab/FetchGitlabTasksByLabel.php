@@ -20,7 +20,7 @@ class FetchGitlabTasksByLabel extends Command
 
     protected $issues = [];
 
-    protected $validLabels = ['To Do', 'Implementing solution'];
+    protected $validLabels = ['To Do', 'Implementing solution', 'Bug patrol'];
 
     public function handle() : void
     {
@@ -58,10 +58,6 @@ class FetchGitlabTasksByLabel extends Command
                     $tags[] = $label;
                     continue;
                 }
-                if (starts_with($label, '/')) {
-                    $types[] = $label;
-                    continue;
-                }
 
                 $dueDate = '';
                 if ($gitlabIssue->due_date) {
@@ -71,7 +67,7 @@ class FetchGitlabTasksByLabel extends Command
                 }
 
                 $tasks = $this->getTasks($gitlabIssue);
-                $title = $tasks['has_tasks'] ? $gitlabIssue->title . ' (' . $tasks['closed']. '/' . $tasks['total'] . ')' : $gitlabIssue->title;
+                $title = $tasks['has_tasks'] ? '(' . $tasks['closed']. '/' . $tasks['total'] . ') ' . $gitlabIssue->title : $gitlabIssue->title;
 
                 $issues[] = [
                     'id' => $gitlabIssue->iid,

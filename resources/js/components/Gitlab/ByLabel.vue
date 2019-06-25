@@ -1,12 +1,15 @@
 <template>
     <tile :position="position" modifiers="overflow">
         <section>
-            <h1>{{ label }} ({{ tasks.length }})</h1>
+            <h1 :class="labelClasses">{{ title }} ({{ tasks.length }})</h1>
             <ul>
+                <li class="text-grey" v-if="! tasks.length">
+                    No bugs reported
+                </li>
                 <li class="border-b-2 py-3 border-grey-darker" v-for="task in orderedTasks">
                     <div class="flex justify-between mb-1">
-                        <span class="uppercase">{{ task.title }}</span>
-                        <div class="gold">#{{ task.id }}</div>
+                        <span class="uppercase truncate">{{ task.title }}</span>
+                        <div class="pl-2 gold">#{{ task.id }}</div>
                     </div>
                     <div class="flex justify-between">
                         <div>
@@ -91,6 +94,14 @@ export default {
         },
     },
     computed: {
+        title() {
+          return this.label
+        },
+        labelClasses() {
+          return [
+              this.label === 'Bug patrol' && this.tasks.length ? 'text-red' : ''
+          ]
+        },
         orderedTasks() {
             if(this.orderBy === 'weight') {
                 return this.tasks.sort((a, b) => {
