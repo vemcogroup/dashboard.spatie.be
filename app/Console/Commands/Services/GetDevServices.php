@@ -108,6 +108,12 @@ class GetDevServices extends Command
                 'status' => (new Tcp('irisys.vemcount.com'))->getValue(),
                 'value' => 'Offline',
             ],
+            [
+                'label' => 'TDI',
+                'status' => (new Tcp('java-app1.vemcount.com', 8081))->getValue(),
+                'value' => 'Offline',
+            ],
+
         ]);
 
         event(new DevServices($this->services));
