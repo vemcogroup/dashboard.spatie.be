@@ -28,7 +28,7 @@ class FetchZendeskTickets extends Command
 
         $dataArray = collect();
         $dataArray->put('unassigned', $this->client->search()->find('assignee:none+status<solved group:support group:notifications')->count);
-        $tickets = $this->client->search()->find('status:open+status:pending group:support group:notifications');
+        $tickets = $this->client->search()->find('status:open status:pending group:support group:notifications group:devs group:sales');
         $dataArray->put('open', $tickets->count);
         $this->populateResult($tickets->results, 'openTickets');
 
