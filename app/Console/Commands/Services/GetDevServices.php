@@ -118,7 +118,11 @@ class GetDevServices extends Command
                 'status' => (new Tcp('java-app1.vemcount.com', 4003))->getValue(),
                 'value' => 'Offline',
             ],
-
+            [
+                'label' => 'Stunnel',
+                'status' => (new Tcp('java-app1.vemcount.com', 443))->getValue(),
+                'value' => 'Offline',
+            ],
         ]);
 
         event(new DevServices($this->services));
