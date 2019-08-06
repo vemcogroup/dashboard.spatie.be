@@ -26,10 +26,11 @@ class Pods extends ApiIntegration
 
     public function getValue()
     {
+        $nodes = $this->client->nodes()->find();
         $pods = $this->client->pods()->setLabelSelector([
             'app' => $this->app_name,
         ])->find();
 
-        return $pods->count();
+        return $nodes->count().'/'.$pods->count();
     }
 }
