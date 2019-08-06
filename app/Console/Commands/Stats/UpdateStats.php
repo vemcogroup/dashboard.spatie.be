@@ -47,9 +47,9 @@ class UpdateStats extends Command
             'showEmpty' => false,
             'items' => [
                 new BugsnagProblems(),
+                new Pods('vemcount'),
                 new Processes(true),
                 new JobsPrHour(),
-                new Pods('vemcount'),
                 //new GitlabIssues(),
                 new Metric(env('CACHETHQ_METRIC')),
             ],
