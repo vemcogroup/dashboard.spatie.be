@@ -84,11 +84,6 @@ class GetDevServices extends Command
                 'value' => 'Offline',
             ],
             [
-                'label' => 'Cachet',
-                'status' => (new Up('https://status.vemcogroup.com', false))->getValue(),
-                'value' => 'Offline',
-            ],
-            [
                 'label' => 'Xovis',
                 'status' => (new Up('https://xovis.vemcount.com:3002'))->getValue(),
                 'value' => 'Offline',

@@ -51,7 +51,7 @@ class UpdateStats extends Command
                 new Processes(true),
                 new JobsPrHour(),
                 //new GitlabIssues(),
-                new Metric(env('CACHETHQ_METRIC')),
+                //new Metric(env('CACHETHQ_METRIC')),
             ],
         ];
 
