@@ -22,6 +22,7 @@ class Alarms extends ApiIntegration
 
     public function getValue()
     {
+        $validStates = ['OK', 'INSUFFICIENT_DATA'];
         /** @var Result $result */
         $result = $this->aws->describeAlarms();
         $metricAlarms = $result->get('MetricAlarms');
@@ -29,7 +30,7 @@ class Alarms extends ApiIntegration
         $activeAlarms = 0;
 
         foreach ($metricAlarms as $alarm) {
-            if ($alarm['StateValue'] !== 'OK' && !count($alarm['AlarmActions'])) {
+            if (!in_array($alarm['StateValue'], $validStates, true) && !count($alarm['AlarmActions'])) {
                 $activeAlarms++;
             }
         }
