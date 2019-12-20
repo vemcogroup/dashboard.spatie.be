@@ -5,9 +5,10 @@ namespace App\Console\Commands\Stats;
 use App\ApiIntegration\K8\Pods;
 use Illuminate\Console\Command;
 use App\Events\Stats\StatsFetched;
-use App\ApiIntegration\CachetHQ\Metric;
 use App\ApiIntegration\Horizon\Processes;
+use App\ApiIntegration\Stats\ActiveUsers;
 use App\ApiIntegration\Horizon\JobsPrHour;
+use App\ApiIntegration\Stats\ActiveSensors;
 use App\ApiIntegration\Bugsnag\BugsnagProblems;
 use App\ApiIntegration\Gitlab\GitlabMergeRequests;
 use App\ApiIntegration\Gitlab\GitlabDeployOnStaging;
@@ -50,6 +51,8 @@ class UpdateStats extends Command
                 new Pods('vemcount'),
                 new Processes(true),
                 new JobsPrHour(),
+                new ActiveSensors(),
+                new ActiveUsers(),
                 //new GitlabIssues(),
                 //new Metric(env('CACHETHQ_METRIC')),
             ],
