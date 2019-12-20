@@ -7,6 +7,10 @@ use App\Services\TweetHistory\TweetHistory;
 
 class DashboardController
 {
+    public function overview(Request $request)
+    {
+        return view('index');
+    }
     public function development(Request $request)
     {
         return view('dashboards.development')->with([
