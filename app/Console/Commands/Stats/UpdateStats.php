@@ -4,6 +4,7 @@ namespace App\Console\Commands\Stats;
 
 use App\ApiIntegration\K8\Pods;
 use Illuminate\Console\Command;
+use App\ApiIntegration\K8\Nodes;
 use App\Events\Stats\StatsFetched;
 use App\ApiIntegration\Horizon\Processes;
 use App\ApiIntegration\Stats\ActiveUsers;
@@ -48,6 +49,7 @@ class UpdateStats extends Command
             'showEmpty' => false,
             'items' => [
                 new BugsnagProblems(),
+                new Nodes(),
                 new Pods('vemcount'),
                 new Processes(true),
                 new JobsPrHour(),

@@ -5,16 +5,14 @@ namespace App\ApiIntegration\K8;
 use Maclof\Kubernetes\Client;
 use App\ApiIntegration\ApiIntegration;
 
-class Pods extends ApiIntegration
+class Nodes extends ApiIntegration
 {
     /** @var Client $client */
     protected $client;
-    protected $app_name;
 
-    public function __construct($app_name='')
+    public function __construct()
     {
-        $this->name = $app_name ? ucfirst($app_name) : 'Pods';
-        $this->app_name = $app_name;
+        $this->name = 'Nodes';
 
         $this->client = new Client([
             'master' => config('k8.master'),
@@ -27,10 +25,7 @@ class Pods extends ApiIntegration
     public function getValue()
     {
         $nodes = $this->client->nodes()->find();
-        $pods = $this->client->pods()->setLabelSelector([
-            'app' => $this->app_name,
-        ])->find();
 
-        return $pods->count();
+        return $nodes->count();
     }
 }
