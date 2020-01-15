@@ -22,6 +22,6 @@ class Processes extends Horizon
 
 
         $workers = (new Workers())->getValue();
-        return $workers . '/' . $this->getContent()->processes;
+        return $workers . 'W / ' . $this->getContent()->processes . 'P';
     }
 }

@@ -30,6 +30,6 @@ class Nodes extends ApiIntegration
             $cpu += (int) $node->toArray()['status']['capacity']['cpu'];
         }
 
-        return $nodes->count() . '/' .($cpu ? $cpu / 4 : 0);
+        return $nodes->count() . 'U / ' .($cpu ? $cpu / 4 : 0) .'C';
     }
 }
