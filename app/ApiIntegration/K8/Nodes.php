@@ -24,8 +24,12 @@ class Nodes extends ApiIntegration
 
     public function getValue()
     {
+        $cpu = 0;
         $nodes = $this->client->nodes()->find();
+        foreach ($nodes as $node) {
+            $cpu += (int) $node->toArray()['status']['capacity']['cpu'];
+        }
 
-        return $nodes->count();
+        return $nodes->count() . '/' .$cpu;
     }
 }
