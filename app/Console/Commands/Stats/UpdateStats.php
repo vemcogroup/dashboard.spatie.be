@@ -55,8 +55,6 @@ class UpdateStats extends Command
                 new JobsPrHour(),
                 new ActiveSensors(),
                 new ActiveUsers(),
-                //new GitlabIssues(),
-                //new Metric(env('CACHETHQ_METRIC')),
             ],
         ];
 
@@ -66,17 +64,6 @@ class UpdateStats extends Command
             'showEmpty' => false,
             'items' => [
                 new GitlabMergeRequests(),
-            ],
-        ];
-
-        $this->stats[] = [
-            'label' => 'Ready for',
-            'showTitle' => true,
-            'showEmpty' => false,
-            'items' => [
-                new GitlabApprovedForProduction(),
-                new GitlabSolutionFinished(),
-                new GitlabDeployOnStaging(),
             ],
         ];
     }
