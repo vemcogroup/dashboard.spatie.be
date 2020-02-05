@@ -128,6 +128,11 @@ class GetDevServices extends Command
                 'status' => (new Tcp('java-app1.vemcount.com', 443))->getValue(),
                 'value' => 'Offline',
             ],
+            [
+                'label' => 'MQTT',
+                'status' => (new Tcp('data.vemcount.com', 1883))->getValue(),
+                'value' => 'Offline',
+            ],
         ]);
 
         event(new DevServices($this->services));
