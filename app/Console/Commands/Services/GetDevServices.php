@@ -9,6 +9,7 @@ use App\ApiIntegration\Web\Ftp;
 use Illuminate\Console\Command;
 use App\ApiIntegration\AWS\Alarms;
 use App\Events\Services\DevServices;
+use App\ApiIntegration\Horizon\Queue;
 use App\ApiIntegration\Horizon\Processes;
 use App\ApiIntegration\Web\CertificateStatus;
 
@@ -30,6 +31,11 @@ class GetDevServices extends Command
             $horizon = (new Processes)->getValue();
         } catch (\Exception $e) {
             $horizon = 0;
+        }
+        try {
+            $queue = (new Queue)->getValue();
+        } catch (\Exception $e) {
+            $queue = 999999;
         }
         $certificateStatus = (new CertificateStatus())->getValue();
 
@@ -57,6 +63,11 @@ class GetDevServices extends Command
                 'label' => 'Horizon',
                 'status' => $horizon > 10,
                 'value' => $horizon,
+            ],
+            [
+                'label' => 'Queue',
+                'status' => $queue > 100000,
+                'value' => $queue,
             ],
             [
                 'label' => 'AWS',
