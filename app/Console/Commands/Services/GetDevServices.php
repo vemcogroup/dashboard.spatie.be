@@ -3,11 +3,12 @@
 namespace App\Console\Commands\Services;
 
 use App\ApiIntegration\Web\Up;
-use App\ApiIntegration\Web\Udp;
-use App\ApiIntegration\Web\Tcp;
 use App\ApiIntegration\Web\Ftp;
+use App\ApiIntegration\Web\Tcp;
+use App\ApiIntegration\Web\Udp;
 use Illuminate\Console\Command;
 use App\ApiIntegration\AWS\Alarms;
+use App\ApiIntegration\Horizon\Wait;
 use App\Events\Services\DevServices;
 use App\ApiIntegration\Horizon\Queue;
 use App\ApiIntegration\Horizon\Processes;
@@ -35,7 +36,12 @@ class GetDevServices extends Command
         try {
             $queue = (new Queue)->getValue();
         } catch (\Exception $e) {
-            $queue = 999999;
+            $queue = ['total' => 999999, 'format' => 999999];
+        }
+        try {
+            $wait = (new Wait)->getValue();
+        } catch (\Exception $e) {
+            $wait = ['total' => 999999, 'format' => 999999];
         }
         $certificateStatus = (new CertificateStatus())->getValue();
 
@@ -66,8 +72,13 @@ class GetDevServices extends Command
             ],
             [
                 'label' => 'Queue',
-                'status' => $queue > 100000,
-                'value' => $queue,
+                'status' => $queue['total'] < config('horizon.queue_max'),
+                'value' => $queue['format'],
+            ],
+            [
+                'label' => 'Queue wait',
+                'status' => $wait['total'] < config('horizon.wait_max'),
+                'value' => $wait['format'],
             ],
             [
                 'label' => 'AWS',

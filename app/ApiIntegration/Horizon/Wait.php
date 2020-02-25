@@ -2,7 +2,9 @@
 
 namespace App\ApiIntegration\Horizon;
 
-class Queue extends Horizon
+use Carbon\Carbon;
+
+class Wait extends Horizon
 {
     protected $name = 'Queue';
 
@@ -16,17 +18,9 @@ class Queue extends Horizon
     {
         $total = 0;
         foreach ($this->getContent(true) as $queue) {
-            $total += $queue['length'];
+            $total += $queue['wait'];
         }
-        $format = $total;
-
-        if ($total > 10000000) { // 10 Mill
-            $format = number_format($total / 100000) . 'M';
-        }
-
-        if ($total > 100000) { // 100 K
-            $format = number_format($total / 1000) . 'K';
-        }
+        $format = Carbon::now()->addSeconds($total)->diffForHumans();
 
         return ['total' => $total, 'format' => $format];
     }
