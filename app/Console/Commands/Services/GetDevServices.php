@@ -101,11 +101,6 @@ class GetDevServices extends Command
                 'value' => 'Offline',
             ],
             [
-                'label' => 'VC São Paulo',
-                'status' => (new Up('https://18.231.94.30'))->getValue(),
-                'value' => 'Offline',
-            ],
-            [
                 'label' => 'VC Singapore',
                 'status' => (new Up('https://52.77.137.57'))->getValue(),
                 'value' => 'Offline',
