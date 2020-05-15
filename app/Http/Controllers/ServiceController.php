@@ -48,13 +48,6 @@ class ServiceController
                 ],
                 'status' => (new Tcp('irisys.vemcount.com'))->getValue(),
             ],
-            'TDI' => [
-                'name' => 'TDI',
-                'commands' => [
-                    new SystemCommand('sudo docker restart 5db02865401f'),
-                ],
-                'status' => (new Tcp('java-app1.vemcount.com', 8081))->getValue(),
-            ],
         ];
     }
 

@@ -126,16 +126,6 @@ class GetDevServices extends Command
                 'value' => 'Offline',
             ],
             [
-                'label' => 'TDI',
-                'status' => (new Tcp('java-app1.vemcount.com', 8081))->getValue(),
-                'value' => 'Offline',
-            ],
-            [
-                'label' => 'TDI Sensor',
-                'status' => (new Tcp('java-app1.vemcount.com', 4003))->getValue(),
-                'value' => 'Offline',
-            ],
-            [
                 'label' => 'Stunnel',
                 'status' => (new Tcp('java-app1.vemcount.com', 443))->getValue(),
                 'value' => 'Offline',
