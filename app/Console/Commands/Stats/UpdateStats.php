@@ -61,7 +61,6 @@ class UpdateStats extends Command
             'showEmpty' => false,
             'items' => [
                 new GitlabReadyForReview(),
-                new GitlabApprovedForRelease(),
                 new GitlabMergeRequests(),
             ],
         ];
