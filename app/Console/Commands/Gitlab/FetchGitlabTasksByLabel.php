@@ -20,7 +20,7 @@ class FetchGitlabTasksByLabel extends Command
 
     protected $issues = [];
 
-    protected $validLabels = ['To Do', 'Implementing solution', 'Bug patrol'];
+    protected $validLabels = ['Planned', 'In progress', 'Bug patrol'];
 
     public function handle() : void
     {

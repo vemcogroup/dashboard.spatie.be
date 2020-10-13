@@ -8,19 +8,16 @@
                 </li>
                 <li class="border-b-2 py-2 border-grey-darker" v-for="task in orderedTasks">
                     <div class="flex justify-between mb-1">
-                        <span class="uppercase truncate">{{ task.title }}</span>
+                        <span class="uppercase truncate">
+                            <div v-if="task.milestoneColor" class="inline-block w-3 h-3" :style="'border-radius: 20px; background-color:' + task.milestoneColor"></div>
+                            {{ task.title }}
+                        </span>
                         <div class="pl-2 gold">#{{ task.id }}</div>
                     </div>
                     <div class="flex justify-between">
                         <div>
                             <div class="weight" v-if="task.weight">
                                 {{ task.weight }}
-                            </div>
-                            <div class="badge" v-if="task.milestone && task.milestoneColor" :style="'background-color: ' + task.milestoneColor">
-                                MS
-                            </div>
-                            <div class="badge" v-else-if="task.milestone">
-                                {{ task.milestone }}
                             </div>
                             <div v-for="(type, index) in task.types" :key="index" class="badge bg-blue-dark">
                                 {{ type }}

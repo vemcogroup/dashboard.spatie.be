@@ -17,7 +17,7 @@
         <internet-connection position="f1:f6"></internet-connection>
         <gitlab-labels position="b1:c16" label="Planned" :show-time="false" :show-assignees="true" order-by="weight"></gitlab-labels>
         <gitlab-labels position="b17:c24" label="Bug patrol" :show-time="false" :show-assignees="true" order-by="weight"></gitlab-labels>
-        <gitlab-labels position="d1:e16" label="Implementing solution" :show-time="false" order-by="weight" :show-assignees="true"></gitlab-labels>
+        <gitlab-labels position="d1:e16" label="In progress" :show-time="false" order-by="weight" :show-assignees="true"></gitlab-labels>
         <gitlab-milestones position="d17:e24"></gitlab-milestones>
         <stats position="f7:f17"></stats>
         <statistics position="f18:f24"></statistics>

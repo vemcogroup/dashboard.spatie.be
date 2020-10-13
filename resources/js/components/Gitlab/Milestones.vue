@@ -1,13 +1,13 @@
 <template>
     <tile :position="position" modifiers="overflow">
         <section>
-            <h1>Planned releases</h1>
+            <h1>Releases</h1>
             <ul>
                 <li class="border-b-2 py-3 border-grey-darker" v-for="milestone in orderedMilestones">
                     <div class="flex justify-between">
                         <div class="">
                             <div class="inline-block uppercase">
-                                <div class="inline-block w-4 h-3" :style="'background-color:' + milestone.color"></div>
+                                <div class="inline-block w-3 h-3" :style="'border-radius: 20px; background-color:' + milestone.color"></div>
                                 {{ milestone.title }}
                             </div>
                             <div v-if="milestone.issues.bugs" class="badge pl-3 pr-3 text-xs bg-red-dark rounded-full">
