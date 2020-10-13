@@ -18,8 +18,9 @@
                             <div class="gold">{{ milestone.issues.percent }}%</div>
                         </div>
                     </div>
-                    <div class="flex justify-end text-xs">
-                         Tasks: {{ milestone.issues.total }}
+                    <div class="flex text-xs">
+                        <div class="w-2/3">{{ date(milestone.dueDate) }} - ({{ dateFormat(milestone.dueDate) }})</div>
+                        <div class="w-1/3 text-right">Tasks: {{ milestone.issues.total }}</div>
                     </div>
                     <div class="h-1 bg-green-dark" :style="'width:' + milestone.issues.percent + '%'"></div>
                 </li>
@@ -69,6 +70,9 @@ w
         date(date) {
             return moment(date).fromNow();
         },
+        dateFormat(date) {
+            return moment(date).format('D-M-Y')
+        }
     },
     computed: {
         orderedMilestones() {

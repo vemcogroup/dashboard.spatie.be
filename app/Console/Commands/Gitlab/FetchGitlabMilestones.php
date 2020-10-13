@@ -111,7 +111,7 @@ class FetchGitlabMilestones extends Command
                 /*'time' => [
                     'estimated' => $gitlabMilestone->time_stats->time_estimate,
                     'spend' => $gitlabMilestone->time_stats->total_time_spent,
-                ]*/
+                ],*/
             ];
         }
 
