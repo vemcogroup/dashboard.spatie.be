@@ -10,11 +10,9 @@ use App\ApiIntegration\Horizon\Processes;
 use App\ApiIntegration\Stats\ActiveUsers;
 use App\ApiIntegration\Horizon\JobsPrHour;
 use App\ApiIntegration\Stats\ActiveSensors;
-use App\ApiIntegration\Bugsnag\BugsnagProblems;
 use App\ApiIntegration\Gitlab\GitlabMergeRequests;
-use App\ApiIntegration\Gitlab\GitlabDeployOnStaging;
-use App\ApiIntegration\Gitlab\GitlabSolutionFinished;
-use App\ApiIntegration\Gitlab\GitlabApprovedForProduction;
+use App\ApiIntegration\Gitlab\GitlabReadyForReview;
+use App\ApiIntegration\Gitlab\GitlabApprovedForRelease;
 
 class UpdateStats extends Command
 {
@@ -48,7 +46,6 @@ class UpdateStats extends Command
             'showTitle' => true,
             'showEmpty' => false,
             'items' => [
-                new BugsnagProblems(),
                 new Nodes(),
                 new Pods('vemcount'),
                 new Processes(true),
@@ -63,6 +60,8 @@ class UpdateStats extends Command
             'showTitle' => true,
             'showEmpty' => false,
             'items' => [
+                new GitlabReadyForReview(),
+                new GitlabApprovedForRelease(),
                 new GitlabMergeRequests(),
             ],
         ];

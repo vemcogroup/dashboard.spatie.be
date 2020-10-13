@@ -5,7 +5,7 @@ namespace App\ApiIntegration\Gitlab;
 use GuzzleHttp\Client;
 use App\ApiIntegration\ApiIntegration;
 
-class GitlabApprovedForProduction extends ApiIntegration
+class GitlabReadyForReview extends ApiIntegration
 {
 
     /**
@@ -28,11 +28,11 @@ class GitlabApprovedForProduction extends ApiIntegration
      */
     public function __construct()
     {
-        $this->name = 'Production';
+        $this->name = 'Review';
 
         $this->groupId = env('GITLAB_GROUP');
 
-        $this->url = 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Approved for production';
+        $this->url = 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Ready for review';
 
         $this->httpClient = new Client([
             'headers' => [
