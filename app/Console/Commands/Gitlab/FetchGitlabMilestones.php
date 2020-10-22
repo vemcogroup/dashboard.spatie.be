@@ -100,7 +100,7 @@ class FetchGitlabMilestones extends Command
                 'id' => $gitlabMilestone->iid,
                 'title' => $gitlabMilestone->title,
                 'color' => $this->findMilestoneColor($gitlabMilestone),
-                'dueDate' => $gitlabMilestone->due_date,
+                'dueDate' => $gitlabMilestone->due_date . ' 23:59:00',
                 'issues' => $this->fetchMilestoneIssues($gitlabMilestone->id),
                 /*'teamMember' => collect($gitlabMilestone->assignees)->map(function ($assignee) {
                     return [
