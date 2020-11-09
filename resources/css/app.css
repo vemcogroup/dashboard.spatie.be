@@ -25,7 +25,8 @@
     @apply px-2;
     @apply mr-1;
     @apply text-xs;
-    @apply bg-green-dark;
+    @apply bg-green-lighter;
+    @apply text-green-darkest;
     @apply inline-block;
 }
 
