@@ -16,8 +16,8 @@
                     </div>
                     <div class="flex justify-between">
                         <div>
-                            <div class="weight" v-if="task.weight">
-                                {{ task.weight }}
+                            <div class="priority" v-if="task.priority">
+                                {{ task.priority }}
                             </div>
                             <div v-for="(type, index) in task.types" :key="index" class="badge bg-blue-dark">
                                 {{ type }}

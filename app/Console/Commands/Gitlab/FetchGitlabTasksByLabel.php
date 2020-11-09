@@ -21,6 +21,12 @@ class FetchGitlabTasksByLabel extends Command
     protected $issues = [];
 
     protected $validLabels = ['Planned', 'In progress', 'Bug patrol'];
+    protected $priorities = [
+      '/Need to have (1)' => 1,
+      '/Billable (2)' => 2,
+      '/Nice to have (3)' => 3,
+      '/Wishlist (4)' => 4,
+    ];
 
     public function handle() : void
     {
@@ -51,11 +57,17 @@ class FetchGitlabTasksByLabel extends Command
     {
         $issues = [];
         foreach ($gitlabIssues as $gitlabIssue) {
+            $priority = null;
             $tags = [];
             $types = [];
             foreach ($gitlabIssue->labels as $label) {
                 if (starts_with($label, '#')) {
                     $tags[] = $label;
+                    continue;
+                }
+
+                if (starts_with($label, '/') && key_exists($label, $this->priorities)) {
+                    $priority = $this->priorities[$label];
                     continue;
                 }
 
@@ -80,6 +92,7 @@ class FetchGitlabTasksByLabel extends Command
                     }),
                     'dueDate' => $dueDate,
                     'label' => $label,
+                    'priority' => $priority,
                     'milestoneColor' => $gitlabIssue->milestone ? $this->findMilestoneColor($gitlabIssue->milestone) : '',
                     'milestone' => $gitlabIssue->milestone ? $gitlabIssue->milestone->title : '',
                     'hasTasks' => $tasks['has_tasks'],

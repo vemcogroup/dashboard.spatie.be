@@ -20,6 +20,15 @@
     @apply inline-block;
 }
 
+.priority {
+    @apply py-1;
+    @apply px-2;
+    @apply mr-1;
+    @apply text-xs;
+    @apply bg-green-dark;
+    @apply inline-block;
+}
+
 .gold {
     @apply text-yellow-dark;
 }
