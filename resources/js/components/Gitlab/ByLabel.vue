@@ -10,15 +10,13 @@
                     <div class="flex justify-between mb-1">
                         <span class="uppercase truncate">
                             <div v-if="task.milestoneColor" class="inline-block w-3 h-3" :style="'border-radius: 20px; background-color:' + task.milestoneColor"></div>
+                            <div v-if="task.priority" class="inline-block"><span style="color: #4CAF50; font-weight: bold;">{{ task.priority }}</span> - </div>
                             {{ task.title }}
                         </span>
                         <div class="pl-2 gold">#{{ task.id }}</div>
                     </div>
                     <div class="flex justify-between">
                         <div>
-                            <div class="priority" v-if="task.priority">
-                                {{ task.priority }}
-                            </div>
                             <div v-for="(type, index) in task.types" :key="index" class="badge bg-blue-dark">
                                 {{ type }}
                             </div>
