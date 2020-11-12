@@ -9,8 +9,9 @@
                 <li class="border-b-2 py-2 border-grey-darker" v-for="task in orderedTasks">
                     <div class="flex justify-between mb-1">
                         <span class="uppercase truncate">
+                            <div v-if="task.priority" class="inline-block"><span style="color: #4CAF50; font-weight: bold;">{{ task.priority }}</span></div>
                             <div v-if="task.milestoneColor" class="inline-block w-3 h-3" :style="'border-radius: 20px; background-color:' + task.milestoneColor"></div>
-                            <div v-if="task.priority" class="inline-block"><span style="color: #4CAF50; font-weight: bold;">{{ task.priority }}</span> - </div>
+                            <div v-if="task.priority || task.milestoneColor" class="inline-block"> - </div>
                             {{ task.title }}
                         </span>
                         <div class="pl-2 gold">#{{ task.id }}</div>
