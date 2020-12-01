@@ -17,6 +17,7 @@ class UpdateDashboardCommand extends Command
         $this->call('dashboard:fetch-gitlab-tasks-by-label');
         $this->call('dashboard:fetch-gitlab-milestones');
         $this->call('dashboard:update-stats');
+        $this->call('dashboard:update-pods');
         $this->call('dashboard:read-feeds');
         $this->call('dashboard:fetch-zendesk-tickets');
         $this->call('dashboard:sensors-offline');

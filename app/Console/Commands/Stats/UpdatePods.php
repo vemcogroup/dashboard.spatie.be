@@ -40,10 +40,10 @@ class UpdatePods extends Command
             'showEmpty' => false,
             'items' => [
                 new Nodes(),
-                new Pods('vemcount'),
+                new Pods('api'),
                 new Pods('dashboard'),
                 new Pods('sensorparser'),
-                new Pods('api'),
+                new Pods('vemcount'),
             ],
         ];
     }
