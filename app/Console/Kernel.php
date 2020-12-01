@@ -2,8 +2,7 @@
 
 namespace App\Console;
 
-use App\Console\Commands\Feed\ReadFeeds;
-use App\Console\Components\Statistics\FetchGitHubTotalsCommand;
+use App\Console\Commands\Stats\UpdatePods;
 use Illuminate\Console\Scheduling\Schedule;
 use App\Console\Commands\Stats\UpdateStats;
 use App\Console\Commands\Stats\SensorsOffline;
@@ -21,18 +20,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command(SendHeartbeatCommand::class)->everyMinute();
-        //$schedule->command(DetermineAppearanceCommand::class)->everyMinute();
-        //$schedule->command(FetchGitHubTotalsCommand::class)->everyThirtyMinutes();
         $schedule->command(FetchPackagistTotalsCommand::class)->hourly();
         $schedule->command(FetchGitlabTasksByLabel::class)->everyFiveMinutes();
         $schedule->command(FetchGitlabMilestones::class)->everyFiveMinutes();
         $schedule->command(UpdateStats::class)->everyMinute();
-        //$schedule->command(ReadFeeds::class)->everyFiveMinutes();
+        $schedule->command(UpdatePods::class)->everyMinute();
         $schedule->command(FetchZendeskTickets::class)->everyMinute();
         $schedule->command(SensorsOffline::class)->everyMinute();
         $schedule->command(GetDeviceServices::class)->everyFiveMinutes();
         $schedule->command(GetDevServices::class)->everyMinute();
-        //$schedule->command('websockets:clean')->daily();
     }
 
     public function commands(): void
