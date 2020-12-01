@@ -10,6 +10,7 @@ import Statistics from './components/Statistics';
 import TimeWeather from './components/TimeWeather';
 import InternetConnection from './components/InternetConnection';
 
+import Pods from './components/Pods';
 import Stats from './components/Stats';
 import RssFeed from './components/RssFeed';
 import Services from './components/Services';
@@ -31,6 +32,7 @@ new Vue({
         Twitter,
         TileTimer,
 
+        Pods,
         Stats,
         RssFeed,
         GitlabLabels,

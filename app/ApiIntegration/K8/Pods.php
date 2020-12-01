@@ -10,7 +10,6 @@ class Pods extends ApiIntegration
     /** @var Client $client */
     protected $client;
     protected $app_name;
-    protected $pods = ['vemcount', 'dashboard', 'api', 'sensorparser'];
 
     public function __construct($app_name='')
     {
@@ -27,14 +26,10 @@ class Pods extends ApiIntegration
 
     public function getValue()
     {
-        $result = [];
-        foreach ($this->pods as $pod) {
-            $value = $this->client->pods()->setLabelSelector([
-                'app' => $pod,
-            ])->find();
-            $result[$pod] = $value ? $value->count() : 0;
-        }
+        $pods = $this->client->pods()->setLabelSelector([
+            'app' => $this->app_name,
+        ])->find();
 
-        return implode(' / ', $result);
+        return $pods->count();
     }
 }

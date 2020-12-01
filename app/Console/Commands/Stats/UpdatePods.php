@@ -2,30 +2,26 @@
 
 namespace App\Console\Commands\Stats;
 
+use App\ApiIntegration\K8\Pods;
 use Illuminate\Console\Command;
-use App\Events\Stats\StatsFetched;
-use App\ApiIntegration\Horizon\Processes;
-use App\ApiIntegration\Stats\ActiveUsers;
-use App\ApiIntegration\Horizon\JobsPrHour;
-use App\ApiIntegration\Stats\ActiveSensors;
-use App\ApiIntegration\Gitlab\GitlabMergeRequests;
-use App\ApiIntegration\Gitlab\GitlabReadyForReview;
+use App\ApiIntegration\K8\Nodes;
+use App\Events\Stats\PodsFetched;
 
-class UpdateStats extends Command
+class UpdatePods extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'dashboard:update-stats';
+    protected $signature = 'dashboard:update-pods';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update all stats';
+    protected $description = 'Update all pods';
 
     protected $stats = [];
 
@@ -43,20 +39,11 @@ class UpdateStats extends Command
             'showTitle' => true,
             'showEmpty' => false,
             'items' => [
-                new Processes(true),
-                new JobsPrHour(),
-                new ActiveSensors(),
-                new ActiveUsers(),
-            ],
-        ];
-
-        $this->stats[] = [
-            'label' => 'GitLab',
-            'showTitle' => true,
-            'showEmpty' => false,
-            'items' => [
-                new GitlabReadyForReview(),
-                new GitlabMergeRequests(),
+                new Nodes(),
+                new Pods('vemcount'),
+                new Pods('dashboard'),
+                new Pods('sensorparser'),
+                new Pods('api'),
             ],
         ];
     }
@@ -82,6 +69,6 @@ class UpdateStats extends Command
             }
         }
 
-        event(new StatsFetched($stats));
+        event(new PodsFetched($stats));
     }
 }
