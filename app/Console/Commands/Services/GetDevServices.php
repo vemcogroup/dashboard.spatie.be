@@ -38,10 +38,12 @@ class GetDevServices extends Command
         } catch (\Exception $e) {
             $queue = ['total' => 999999, 'format' => 999999];
         }
-        try {
-            $wait = (new Wait)->getValue();
-        } catch (\Exception $e) {
-            $wait = ['total' => 999999, 'format' => 999999];
+        foreach (['default', 'metric-data', 'realtime'] as $name) {
+            try {
+                $wait[$name] = (new Wait($name))->getValue();
+            } catch (\Exception $e) {
+                $wait[$name] = ['total' => 999999, 'format' => 999999];
+            }
         }
         $certificateStatus = (new CertificateStatus())->getValue();
 
@@ -76,9 +78,19 @@ class GetDevServices extends Command
                 'value' => $queue['format'],
             ],
             [
-                'label' => 'Queue wait',
-                'status' => $wait['total'] < config('horizon.wait_max'),
-                'value' => $wait['format'],
+                'label' => 'default',
+                'status' => $wait['default']['total'] < config('horizon.default_wait_max'),
+                'value' => $wait['default']['format'],
+            ],
+            [
+                'label' => 'metric-data',
+                'status' => $wait['metric-data']['total'] < config('horizon.metric_data_wait_max'),
+                'value' => $wait['metric-data']['format'],
+            ],
+            [
+                'label' => 'realtime',
+                'status' => $wait['realtime']['total'] < config('horizon.realtime_wait_max'),
+                'value' => $wait['realtime']['format'],
             ],
             [
                 'label' => 'AWS',

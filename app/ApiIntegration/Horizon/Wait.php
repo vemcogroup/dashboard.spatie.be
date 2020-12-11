@@ -6,11 +6,13 @@ use Carbon\Carbon;
 
 class Wait extends Horizon
 {
+    protected $queue = '';
     protected $name = 'Queue';
 
-    public function __construct()
+    public function __construct($queue)
     {
         parent::__construct();
+        $this->queue = $queue;
         $this->url = 'https://l.vemcount.com/horizon/api/workload';
     }
 
@@ -18,7 +20,10 @@ class Wait extends Horizon
     {
         $total = 0;
         foreach ($this->getContent(true) as $queue) {
-            $total += $queue['wait'];
+            if ($queue['name'] === $this->queue) {
+                $total += $queue['wait'];
+                break;
+            }
         }
         $format = Carbon::now()->addSeconds($total)->diffForHumans();
 
