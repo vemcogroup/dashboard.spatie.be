@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cf22eb8dac9d969558e5d4808d89449",
+    "content-hash": "71df0b7519f48b6f8590534a270834cf",
     "packages": [
         {
             "name": "awjudd/feed-reader",
@@ -505,6 +505,7 @@
                 "psr-7",
                 "reactphp"
             ],
+            "abandoned": "react/http",
             "time": "2020-01-14T13:22:15+00:00"
         },
         {
@@ -1809,6 +1810,7 @@
                 }
             ],
             "description": "JSONPath implementation for parsing, searching and flattening arrays",
+            "abandoned": "softcreatr/jsonpath",
             "time": "2019-07-15T17:23:22+00:00"
         },
         {
@@ -2189,6 +2191,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -2235,6 +2238,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -4867,6 +4871,7 @@
             "keywords": [
                 "http"
             ],
+            "abandoned": "react/http",
             "time": "2020-01-14T08:36:16+00:00"
         },
         {
@@ -5334,6 +5339,63 @@
                 "rss"
             ],
             "time": "2019-11-23T07:05:15+00:00"
+        },
+        {
+            "name": "smsapi/php-client",
+            "version": "v2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/smsapi/smsapi-php-client.git",
+                "reference": "72e87c2e01fff97ebd4576e1cbaef740b413837e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/smsapi/smsapi-php-client/zipball/72e87c2e01fff97ebd4576e1cbaef740b413837e",
+                "reference": "72e87c2e01fff97ebd4576e1cbaef740b413837e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^6",
+                "php": "^7",
+                "psr/http-message": "^1",
+                "psr/log": "^1"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4",
+                "marc-mabe/php-enum": "^3",
+                "phing/phing": "^2.5",
+                "phpcompatibility/php-compatibility": "^9",
+                "phpunit/phpunit": "^6",
+                "sebastian/phpcpd": "^3",
+                "squizlabs/php_codesniffer": "^3",
+                "symfony/yaml": "^3",
+                "theodorejb/polycast": "^1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Smsapi\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "SMSAPI API PHP Client",
+            "homepage": "https://github.com/smsapi/smsapi-php-client",
+            "keywords": [
+                "api client",
+                "hlr",
+                "mms",
+                "sms",
+                "smsapi",
+                "smsapi.com",
+                "smsapi.pl",
+                "url shortener",
+                "vms"
+            ],
+            "time": "2020-05-14T10:44:12+00:00"
         },
         {
             "name": "spatie/data-transfer-object",
@@ -8048,6 +8110,7 @@
                 "faker",
                 "fixtures"
             ],
+            "abandoned": true,
             "time": "2019-12-12T13:22:17+00:00"
         },
         {
@@ -8828,6 +8891,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
@@ -8913,6 +8977,107 @@
                 "xunit"
             ],
             "time": "2020-01-08T08:45:45+00:00"
+        },
+        {
+            "name": "psr/http-client",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-client.git",
+                "reference": "2dfb5f6c5eff0e91e20e913f8c5452ed95b86621"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-client/zipball/2dfb5f6c5eff0e91e20e913f8c5452ed95b86621",
+                "reference": "2dfb5f6c5eff0e91e20e913f8c5452ed95b86621",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0 || ^8.0",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP clients",
+            "homepage": "https://github.com/php-fig/http-client",
+            "keywords": [
+                "http",
+                "http-client",
+                "psr",
+                "psr-18"
+            ],
+            "time": "2020-06-29T06:28:15+00:00"
+        },
+        {
+            "name": "psr/http-factory",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-factory.git",
+                "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
+                "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for PSR-7 HTTP message factories",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "psr",
+                "psr-17",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2019-04-30T12:38:16+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -9689,5 +9854,6 @@
     "platform-dev": [],
     "platform-overrides": {
         "php": "7.3.0"
-    }
+    },
+    "plugin-api-version": "1.1.0"
 }

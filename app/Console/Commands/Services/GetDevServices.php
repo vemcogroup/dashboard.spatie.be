@@ -7,6 +7,7 @@ use App\ApiIntegration\Web\Ftp;
 use App\ApiIntegration\Web\Tcp;
 use App\ApiIntegration\Web\Udp;
 use Illuminate\Console\Command;
+use App\Events\Alarms\QueueAlarm;
 use App\ApiIntegration\AWS\Alarms;
 use App\ApiIntegration\Horizon\Wait;
 use App\Events\Services\DevServices;
@@ -43,6 +44,9 @@ class GetDevServices extends Command
                 $wait[$name] = (new Wait($name))->getValue();
             } catch (\Exception $e) {
                 $wait[$name] = ['total' => 999999, 'format' => 999999];
+            }
+            if ($wait[$name]['total'] > config('alert.queue_wait_limit')) {
+                event(new QueueAlarm($name, $wait[$name]));
             }
         }
         $certificateStatus = (new CertificateStatus())->getValue();
