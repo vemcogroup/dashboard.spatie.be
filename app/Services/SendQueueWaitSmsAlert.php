@@ -15,8 +15,17 @@ class SendQueueWaitSmsAlert
     {
         $this->event = $event;
         $to = explode(',', config('alert.to'));
+        $cache_key = 'queue-wait-alert-' . $event->name;
 
         try {
+
+            if (!cache()->has($cache_key)) {
+                cache()->set($cache_key, 1, now()->addMinutes(2));
+                return;
+            }
+
+            cache()->forget($cache_key);
+
             $apiToken = config('smsapi.token');
             $message = 'Queue: ' . $event->name . ', have a wait time: "' . $event->wait['format'] . ' (' . $event->wait['total']. ' sec.)", please take action.';
 
@@ -28,8 +37,6 @@ class SendQueueWaitSmsAlert
 
             $service->smsFeature()->sendSmss($sms);
         } catch (Exception $exception) {
-
         }
-
     }
 }

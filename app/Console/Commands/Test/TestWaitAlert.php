@@ -16,9 +16,13 @@ class TestWaitAlert extends Command
 
     public function handle(): void
     {
+        $now = Carbon::now();
+        $this->info('Time: ' . $now);
+
         $seconds = config('alert.queue_wait_limit');
-        $format = Carbon::now()->addSeconds($seconds)->diffForHumans();
+        $format = $now->addSeconds($seconds)->diffForHumans();
         $wait = ['total' => $seconds, 'format' => $format];
+
 
         event(new QueueAlarm('test-queue', $wait));
     }
