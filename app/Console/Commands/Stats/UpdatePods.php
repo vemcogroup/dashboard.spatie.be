@@ -43,7 +43,7 @@ class UpdatePods extends Command
                 new Pods('api'),
                 new Pods('dashboard'),
                 new Pods('sensorparser'),
-                new Pods('vemcount'),
+                new Pods('frontend'),
             ],
         ];
     }
