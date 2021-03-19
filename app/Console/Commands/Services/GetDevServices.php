@@ -107,23 +107,13 @@ class GetDevServices extends Command
                 'value' => 'Offline',
             ],
             [
-                'label' => 'Website',
+                'label' => 'Vemco.group',
                 'status' => (new Up('https://www.vemcount.com'))->getValue(),
                 'value' => 'Offline',
             ],
             [
                 'label' => 'Vemcount',
                 'status' => (new Up('https://vemcount.app'))->getValue(),
-                'value' => 'Offline',
-            ],
-            [
-                'label' => 'App1',
-                'status' => (new Up('https://central-app1.vemcount.com'))->getValue(),
-                'value' => 'Offline',
-            ],
-            [
-                'label' => 'Licenses',
-                'status' => (new Up('https://license.vemcount.com'))->getValue(),
                 'value' => 'Offline',
             ],
             [
