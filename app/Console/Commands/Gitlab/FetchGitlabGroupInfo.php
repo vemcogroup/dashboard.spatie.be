@@ -18,30 +18,32 @@ class FetchGitlabGroupInfo extends Command
     protected $httpClient = null;
 
     protected $groupId = null;
+    protected $baseUrl;
 
     public function handle()
     {
         $this->groupId = env('GITLAB_GROUP');
+        $this->baseUrl = env('GITLAB_URL');
         $this->resources = new Collection();
 
         $this->resources->put('issues', [
-            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1'
+            'url' => $this->baseUrl . '/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1'
         ]);
 
         $this->resources->put('finished', [
-            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Solution finished'
+            'url' => $this->baseUrl . '/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Solution finished'
         ]);
 
         $this->resources->put('approved', [
-            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Approved for production'
+            'url' => $this->baseUrl . '/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Approved for production'
         ]);
 
         $this->resources->put('deployed', [
-            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Deployed on staging'
+            'url' => $this->baseUrl . '/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Deployed on staging'
         ]);
 
         $this->resources->put('mergeRequests', [
-            'url' => 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/merge_requests?state=opened&scope=all&per_page=1'
+            'url' => $this->baseUrl . '/api/v4/groups/' . $this->groupId . '/merge_requests?state=opened&scope=all&per_page=1'
         ]);
 
         $this->httpClient = new Client([

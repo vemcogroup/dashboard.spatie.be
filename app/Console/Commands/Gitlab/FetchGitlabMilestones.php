@@ -13,18 +13,17 @@ class FetchGitlabMilestones extends Command
     protected $description = 'Fetch milestones from Gitlab';
 
     protected $url;
-
+    protected $baseUrl;
     protected $httpClient;
-
     protected $projectId;
-
     protected $milestones = [];
 
     public function handle(): void
     {
         $this->projectId = env('GITLAB_PROJECT');
+        $this->baseUrl = env('GITLAB_URL');
 
-        $this->url = 'https://gitlab.com/api/v4/projects/' . $this->projectId . '/milestones?state=active';
+        $this->url = $this->baseUrl . '/api/v4/projects/' . $this->projectId . '/milestones?state=active';
 
         $this->httpClient = new Client([
             'headers' => [

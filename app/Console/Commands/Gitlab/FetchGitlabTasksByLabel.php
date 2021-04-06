@@ -13,11 +13,9 @@ class FetchGitlabTasksByLabel extends Command
     protected $description = 'Fetch tasks by label from Gitlab';
 
     protected $url;
-
+    protected $baseUrl;
     protected $httpClient;
-
     protected $projectId;
-
     protected $issues = [];
 
     protected $validLabels = ['Planned', 'In progress', 'Bug patrol'];
@@ -31,8 +29,9 @@ class FetchGitlabTasksByLabel extends Command
     public function handle() : void
     {
         $this->projectId = env('GITLAB_PROJECT');
+        $this->baseUrl = env('GITLAB_URL');
 
-        $this->url = 'https://gitlab.com/api/v4/projects/'.$this->projectId.'/issues?state=opened&scope=all&order_by=created_at&sort=asc&per_page=100&labels=';
+        $this->url = $this->baseUrl . '/api/v4/projects/'.$this->projectId.'/issues?state=opened&scope=all&order_by=created_at&sort=asc&per_page=100&labels=';
 
         $this->httpClient = new Client([
             'headers' => [
