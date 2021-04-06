@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\Alarms\QueueAlarm;
+use App\Services\SendQueueWaitSmsAlert;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -15,6 +17,9 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\Twitter\Mentioned::class => [
             \App\Services\TweetHistory\TweetHistory::class,
         ],
+        QueueAlarm::class => [
+            SendQueueWaitSmsAlert::class,
+        ]
     ];
 
     protected $subscribe = [
