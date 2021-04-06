@@ -17,6 +17,7 @@ class GitlabMergeRequests extends ApiIntegration
      * @var string
      */
     protected $url;
+    protected $baseUrl;
 
     /**
      * @var Client
@@ -31,8 +32,9 @@ class GitlabMergeRequests extends ApiIntegration
         $this->name = 'Merge requests';
 
         $this->groupId = env('GITLAB_GROUP');
+        $this->baseUrl = env('GITLAB_URL');
 
-        $this->url = 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/merge_requests?state=opened&scope=all&per_page=1';
+        $this->url = $this->baseUrl . '/api/v4/groups/' . $this->groupId . '/merge_requests?state=opened&scope=all&per_page=1';
 
         $this->httpClient = new Client([
             'headers' => [

@@ -17,6 +17,7 @@ class GitlabApprovedForRelease extends ApiIntegration
      * @var string
      */
     protected $url;
+    protected $baseUrl;
 
     /**
      * @var Client
@@ -31,8 +32,9 @@ class GitlabApprovedForRelease extends ApiIntegration
         $this->name = 'Production';
 
         $this->groupId = env('GITLAB_GROUP');
+        $this->baseUrl = env('GITLAB_URL');
 
-        $this->url = 'https://gitlab.com/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Approved for release';
+        $this->url = $this->baseUrl . '/api/v4/groups/' . $this->groupId . '/issues?state=opened&scope=all&per_page=1&labels=Approved for release';
 
         $this->httpClient = new Client([
             'headers' => [
