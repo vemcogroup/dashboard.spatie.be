@@ -36,9 +36,10 @@ return [
                     'access_token' => env('TWITTER_ACCESS_TOKEN'),
                     'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET'),
                     'listen_for' => [
-                        'spatie.be',
-                        '@spatie_be',
-                        'github.com/spatie',
+                        'vemcount',
+                        '@vemcount',
+                        'vemcogroup',
+                        '@vemcogroup',
                     ],
                 ],
             ],
@@ -73,7 +74,7 @@ return [
 
         'time_weather' => [
             'open_weather_map_key' => env('OPEN_WEATHER_MAP_KEY'),
-            'open_weather_map_city' => 'Antwerp',
+            'open_weather_map_city' => env('OPEN_WEATHER_MAP_CITY', 'Antwerp'),
             'buienradar_latitude' => env('BUIENRADAR_LATITUDE'),
             'buienradar_longitude' => env('BUIENRADAR_LONGITUDE'),
         ],
