@@ -29,24 +29,23 @@ class GetDevServices extends Command
         } catch (\Exception $e) {
             $aws = 9999;
         }
-        try {
-            $horizon = (new Processes)->getValue();
-        } catch (\Exception $e) {
-            $horizon = 0;
-        }
-        try {
-            $queue = (new Queue)->getValue();
-        } catch (\Exception $e) {
-            $queue = ['total' => 999999, 'format' => 999999];
-        }
-        foreach (['default', 'metric-data', 'realtime'] as $name) {
+
+        $horizon = [];
+        foreach (config('horizon.domains') as $domain) {
             try {
-                $wait[$name] = (new Wait($name))->getValue();
+                $horizon[$domain]['queue'] = (new Queue($domain))->getValue();
             } catch (\Exception $e) {
-                $wait[$name] = ['total' => 999999, 'format' => 999999];
+                $horizon[$domain]['queue'] = ['total' => 999999, 'format' => 999999];
             }
-            if ($wait[$name]['total'] > config('alert.queue_wait_limit')) {
-                event(new QueueAlarm($name, $wait[$name]));
+            foreach (['default', 'metric-data', 'realtime'] as $name) {
+                try {
+                    $horizon[$domain]['wait'][$name] = (new Wait($domain, $name))->getValue();
+                } catch (\Exception $e) {
+                    $horizon[$domain]['wait'][$name] = ['total' => 999999, 'format' => 999999];
+                }
+                if ($horizon[$domain]['wait'][$name]['total'] > config('alert.queue_wait_limit')) {
+                    event(new QueueAlarm($domain, $name, $horizon[$domain]['wait'][$name]));
+                }
             }
         }
         $certificateStatus = (new CertificateStatus())->getValue();
@@ -60,6 +59,31 @@ class GetDevServices extends Command
             ];
         }
 
+        foreach (config('horizon.domains') as $domain) {
+            $this->services  = array_merge($this->services, [
+                [
+                    'label' => $domain . ': Queue',
+                    'status' => $horizon[$domain]['queue']['total'] < config('horizon.queue_max'),
+                    'value' => $horizon[$domain]['queue']['format'],
+                ],
+                [
+                    'label' => $domain . ': default',
+                    'status' => $horizon[$domain]['wait']['default']['total'] < config('horizon.default_wait_max'),
+                    'value' => $horizon[$domain]['wait']['default']['format'],
+                ],
+                [
+                    'label' => $domain . ': metric-data',
+                    'status' => $horizon[$domain]['wait']['metric-data']['total'] < config('horizon.metric_data_wait_max'),
+                    'value' => $horizon[$domain]['wait']['metric-data']['format'],
+                ],
+                [
+                    'label' => $domain . ': realtime',
+                    'status' => $horizon[$domain]['wait']['realtime']['total'] < config('horizon.realtime_wait_max'),
+                    'value' => $horizon[$domain]['wait']['realtime']['format'],
+                ],
+            ]);
+        }
+
         $this->services = array_merge($this->services, [
             [
                 'label' => 'FTP',
@@ -70,31 +94,6 @@ class GetDevServices extends Command
                 'label' => 'SFTP',
                 'status' => (new Ftp('sftp'))->getValue(),
                 'value' => 'Offline',
-            ],
-            [
-                'label' => 'Horizon',
-                'status' => $horizon > 10,
-                'value' => $horizon,
-            ],
-            [
-                'label' => 'Queue',
-                'status' => $queue['total'] < config('horizon.queue_max'),
-                'value' => $queue['format'],
-            ],
-            [
-                'label' => 'default',
-                'status' => $wait['default']['total'] < config('horizon.default_wait_max'),
-                'value' => $wait['default']['format'],
-            ],
-            [
-                'label' => 'metric-data',
-                'status' => $wait['metric-data']['total'] < config('horizon.metric_data_wait_max'),
-                'value' => $wait['metric-data']['format'],
-            ],
-            [
-                'label' => 'realtime',
-                'status' => $wait['realtime']['total'] < config('horizon.realtime_wait_max'),
-                'value' => $wait['realtime']['format'],
             ],
             [
                 'label' => 'AWS',
@@ -139,6 +138,11 @@ class GetDevServices extends Command
             [
                 'label' => 'MQTT',
                 'status' => (new Tcp('data.vemcount.com', 1883))->getValue(),
+                'value' => 'Offline',
+            ],
+            [
+                'label' => 'Websocket',
+                'status' => (new Tcp('websockets.vemcount.com'))->getValue(),
                 'value' => 'Offline',
             ],
         ]);

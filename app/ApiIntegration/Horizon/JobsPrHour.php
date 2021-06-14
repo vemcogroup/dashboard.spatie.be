@@ -2,7 +2,7 @@
 
 namespace App\ApiIntegration\Horizon;
 
-class JobsPrHour extends Horizon
+class JobsPrHour extends Stats
 {
     protected $name = 'Jobs';
 

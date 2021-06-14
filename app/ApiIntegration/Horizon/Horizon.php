@@ -8,11 +8,12 @@ use App\ApiIntegration\ApiIntegration;
 class Horizon extends ApiIntegration
 {
     protected $url;
+    protected $domain;
     protected $httpClient;
 
-    public function __construct()
+    public function __construct($domain)
     {
-        $this->url = 'https://l.vemcount.com/horizon/api/stats';
+        $this->domain = $domain;
         $this->httpClient = new Client();
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\ApiIntegration\Horizon;
 
-class JobsPrMinute extends Horizon
+class JobsPrMinute extends Stats
 {
     protected $name = 'Jobs per min';
 

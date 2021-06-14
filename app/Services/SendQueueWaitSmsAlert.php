@@ -27,7 +27,7 @@ class SendQueueWaitSmsAlert
             cache()->forget($cache_key);
 
             $apiToken = config('smsapi.token');
-            $message = 'Queue: ' . $event->name . ', have a wait time: "' . $event->wait['format'] . ' (' . $event->wait['total']. ' sec.)", please take action.';
+            $message = 'Domain: ' . $event->domain . ', Queue: ' . $event->name . ', have a wait time: "' . $event->wait['format'] . ' (' . $event->wait['total']. ' sec.)", please take action.';
 
             $sms = SendSmssBag::withMessage($to, $message);
             $sms->from = 'Alarm';

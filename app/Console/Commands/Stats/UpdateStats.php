@@ -4,11 +4,11 @@ namespace App\Console\Commands\Stats;
 
 use Illuminate\Console\Command;
 use App\Events\Stats\StatsFetched;
-use App\ApiIntegration\Horizon\Processes;
 use App\ApiIntegration\Stats\ActiveUsers;
-use App\ApiIntegration\Horizon\JobsPrHour;
 use App\ApiIntegration\Stats\ActiveSensors;
 use App\ApiIntegration\Gitlab\GitlabMergeRequests;
+use App\ApiIntegration\Horizon\Globally\Processes;
+use App\ApiIntegration\Horizon\Globally\JobsPrHour;
 use App\ApiIntegration\Gitlab\GitlabReadyForReview;
 
 class UpdateStats extends Command
@@ -43,7 +43,7 @@ class UpdateStats extends Command
             'showTitle' => true,
             'showEmpty' => false,
             'items' => [
-                new Processes(true),
+                new Processes(),
                 new JobsPrHour(),
                 new ActiveSensors(),
                 new ActiveUsers(),

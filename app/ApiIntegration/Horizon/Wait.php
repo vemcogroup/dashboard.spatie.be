@@ -9,11 +9,11 @@ class Wait extends Horizon
     protected $queue = '';
     protected $name = 'Queue';
 
-    public function __construct($queue)
+    public function __construct($domain, $queue)
     {
-        parent::__construct();
+        parent::__construct($domain);
         $this->queue = $queue;
-        $this->url = 'https://l.vemcount.com/horizon/api/workload';
+        $this->url = 'https://' . $this->domain . '/horizon/api/workload';
     }
 
     public function getValue()

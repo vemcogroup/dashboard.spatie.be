@@ -6,10 +6,10 @@ class Workers extends Horizon
 {
     protected $name = 'Workers';
 
-    public function __construct()
+    public function __construct($domain)
     {
-        parent::__construct();
-        $this->url = 'https://l.vemcount.com/horizon/api/masters';
+        parent::__construct($domain);
+        $this->url = 'https://' . $this->domain . '/horizon/api/masters';
     }
 
     public function getValue(): int

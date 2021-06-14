@@ -2,14 +2,14 @@
 
 namespace App\ApiIntegration\Horizon;
 
-class Processes extends Horizon
+class Processes extends Stats
 {
     protected $name = 'Horizon';
     protected $includeWorkers;
 
-    public function __construct($includeWorkers = false)
+    public function __construct($domain, $includeWorkers = false)
     {
-        parent::__construct();
+        parent::__construct($domain);
 
         $this->includeWorkers = $includeWorkers;
     }
@@ -20,8 +20,7 @@ class Processes extends Horizon
             return $this->getContent()->processes;
         }
 
-
-        $workers = (new Workers())->getValue();
+        $workers = (new Workers($this->domain))->getValue();
         return $workers . 'W / ' . $this->getContent()->processes . 'P';
     }
 }

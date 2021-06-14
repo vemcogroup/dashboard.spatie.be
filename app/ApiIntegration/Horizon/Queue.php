@@ -6,10 +6,10 @@ class Queue extends Horizon
 {
     protected $name = 'Queue';
 
-    public function __construct()
+    public function __construct($domain)
     {
-        parent::__construct();
-        $this->url = 'https://l.vemcount.com/horizon/api/workload';
+        parent::__construct($domain);
+        $this->url = 'https://' . $this->domain . '/horizon/api/workload';
     }
 
     public function getValue()
